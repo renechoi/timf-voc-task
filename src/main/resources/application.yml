@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:mysql://localhost:3300/timf-voc-task
+    username: {SPRING_DATA_SOURCE_USERNAME}
+    password: {SPRING_DATA_SOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+     ddl-auto: create
+    show-sql: true
