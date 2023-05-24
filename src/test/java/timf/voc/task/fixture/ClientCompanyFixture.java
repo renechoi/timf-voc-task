@@ -21,4 +21,19 @@ public class ClientCompanyFixture {
 		clientCompany.setCreatedAt(LocalDateTime.now());
 		return clientCompany;
 	}
+
+	public static ClientCompany create(Long id, List<Voc> vocList, Long compensationPayment, boolean isCompensationPaid) {
+		ClientCompany clientCompany = ClientCompany.builder()
+			.id(id)
+			.companyName("company1")
+			.contacts("010-1234-1234")
+			.description("client company content1")
+			.compensationPayment(compensationPayment)
+			.isCompensationPaid(isCompensationPaid)
+			.vocList(vocList)
+			.build();
+
+		clientCompany.setCreatedAt(LocalDateTime.now());
+		return clientCompany;
+	}
 }
