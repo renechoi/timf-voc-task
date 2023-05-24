@@ -3,12 +3,12 @@ services:
   timf-voc-task-database:
     container_name: timf-voc-task-database
     build:
-      dockerfile: Dockerfile
       context: ./database
-    image: renechoi/timf-voc-task-database
+    image: mysql:8.0.33
     environment:
       - MYSQL_DATABASE=timf-voc-task
       - MYSQL_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - TZ=Asia/Seoul
     volumes:
       - ./database/config:/etc/mysql/conf.d
     ports:
