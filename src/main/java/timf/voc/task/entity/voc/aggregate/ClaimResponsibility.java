@@ -1,4 +1,4 @@
-package timf.voc.task.entity.constant;
+package timf.voc.task.entity.voc.aggregate;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

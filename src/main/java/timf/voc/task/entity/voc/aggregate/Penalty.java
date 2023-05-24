@@ -1,4 +1,4 @@
-package timf.voc.task.entity;
+package timf.voc.task.entity.voc.aggregate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import timf.voc.task.entity.voc.Voc;
 
 @Entity
 @Builder
@@ -34,4 +35,8 @@ public class Penalty {
 
 	@Column(length = 2000)
 	private String objectionContent;
+
+	public static Penalty of(String penaltyDescription, Long penaltyAmount) {
+		return Penalty.builder().description(penaltyDescription).amount(penaltyAmount).build();
+	}
 }

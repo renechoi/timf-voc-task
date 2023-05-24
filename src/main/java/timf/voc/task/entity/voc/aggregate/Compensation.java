@@ -1,4 +1,4 @@
-package timf.voc.task.entity;
+package timf.voc.task.entity.voc.aggregate;
 
 import java.math.BigDecimal;
 
@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import timf.voc.task.entity.voc.Voc;
 
 @Entity
 @Builder
@@ -32,4 +33,8 @@ public class Compensation {
     @OneToOne
     @JoinColumn(name = "voc_id")
     private Voc voc;
+
+    public static Compensation of(String compensationDescription, Long compensationAmount) {
+        return Compensation.builder().description(compensationDescription).amount(compensationAmount).build();
+    }
 }
