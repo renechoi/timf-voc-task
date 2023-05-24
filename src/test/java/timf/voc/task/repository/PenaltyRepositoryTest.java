@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import timf.voc.task.entity.Penalty;
+import timf.voc.task.entity.voc.aggregate.Penalty;
 import timf.voc.task.fixture.PenaltyFixture;
 import timf.voc.task.fixture.VocFixture;
 

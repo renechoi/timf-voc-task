@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import timf.voc.task.entity.Compensation;
-import timf.voc.task.entity.DeliveryDriver;
+import timf.voc.task.entity.voc.aggregate.Compensation;
 import timf.voc.task.fixture.CompensationFixture;
-import timf.voc.task.fixture.DeliverDriverFixture;
-import timf.voc.task.fixture.TransportCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
 
 @DataJpaTest
