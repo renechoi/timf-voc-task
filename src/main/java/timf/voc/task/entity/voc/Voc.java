@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import timf.voc.task.dto.VocRequest;
 import timf.voc.task.entity.ClientCompany;
@@ -27,6 +28,7 @@ import timf.voc.task.entity.voc.aggregate.VocStatus;
 
 @Entity
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Voc extends BaseEntity {
@@ -61,20 +63,31 @@ public class Voc extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private VocStatus status;
 
+	public Voc(String description, boolean claimReceived, boolean compensationRequested,
+		ClaimResponsibility claimResponsibility, DeliveryDriver deliveryDriver, ClientCompany clientCompany,
+		Compensation compensation, Penalty penalty) {
+		this.description = description;
+		this.claimReceived = claimReceived;
+		this.compensationRequested = compensationRequested;
+		this.claimResponsibility = claimResponsibility;
+		this.deliveryDriver = deliveryDriver.mappedWith(this);
+		this.clientCompany = clientCompany.mappedWith(this);
+		this.compensation = mapWith(compensation);
+		this.penalty = mapWith(penalty);
+	}
+
 	public static Voc createVoc(VocRequest vocRequest, ClientCompany clientCompany, DeliveryDriver deliveryDriver) {
 		Compensation compensation = createCompensation(vocRequest);
 		Penalty penalty = createPenalty(vocRequest);
 
-		return Voc.builder()
-			.description(vocRequest.getDescription())
-			.claimReceived(vocRequest.isClaimReceived())
-			.compensationRequested(vocRequest.isCompensationRequested())
-			.claimResponsibility(vocRequest.getClaimResponsibility())
-			.deliveryDriver(deliveryDriver)
-			.clientCompany(clientCompany)
-			.compensation(compensation)
-			.penalty(penalty)
-			.build();
+		return new Voc(vocRequest.getDescription(),
+			vocRequest.isClaimReceived(),
+			vocRequest.isCompensationRequested(),
+			vocRequest.getClaimResponsibility(),
+			deliveryDriver,
+			clientCompany,
+			compensation,
+			penalty);
 	}
 
 	private static Penalty createPenalty(VocRequest vocRequest) {
@@ -90,5 +103,13 @@ public class Voc extends BaseEntity {
 		}
 
 		return null;
+	}
+
+	private Compensation mapWith(Compensation compensation) {
+		return compensation == null ? null : compensation.mappedWith(this);
+	}
+
+	private Penalty mapWith(Penalty penalty) {
+		return penalty == null ? null : penalty.mappedWith(this);
 	}
 }

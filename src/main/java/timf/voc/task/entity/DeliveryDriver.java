@@ -42,4 +42,9 @@ public class DeliveryDriver extends BaseEntity {
 
 	@OneToMany(mappedBy = "deliveryDriver", cascade = CascadeType.ALL)
 	private List<Voc> vocList;
+
+	public DeliveryDriver mappedWith(Voc voc) {
+		this.vocList.add(voc);
+		return this;
+	}
 }

@@ -39,4 +39,9 @@ public class Penalty {
 	public static Penalty of(String penaltyDescription, Long penaltyAmount) {
 		return Penalty.builder().description(penaltyDescription).amount(penaltyAmount).build();
 	}
+
+	public Penalty mappedWith(Voc voc) {
+		this.voc = voc;
+		return this;
+	}
 }

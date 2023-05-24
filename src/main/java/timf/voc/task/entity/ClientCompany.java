@@ -39,4 +39,9 @@ public class ClientCompany extends BaseEntity {
 
 	@OneToMany(mappedBy = "clientCompany", cascade = CascadeType.ALL)
 	private List<Voc> vocList;
+
+	public ClientCompany mappedWith(Voc voc) {
+		this.vocList.add(voc);
+		return this;
+	}
 }
