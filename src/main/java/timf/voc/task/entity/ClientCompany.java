@@ -12,12 +12,14 @@ import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import timf.voc.task.entity.auditEntity.BaseEntity;
 import timf.voc.task.entity.voc.Voc;
 
 @Entity
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientCompany extends BaseEntity {

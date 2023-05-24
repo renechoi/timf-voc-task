@@ -8,11 +8,13 @@ import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import timf.voc.task.entity.auditEntity.BaseEntity;
 
 @Entity
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransportCompany extends BaseEntity {
