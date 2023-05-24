@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import timf.voc.task.entity.voc.aggregate.Penalty;
 import timf.voc.task.fixture.PenaltyFixture;
@@ -19,6 +20,7 @@ class PenaltyRepositoryTest {
 	PenaltyRepository penaltyRepository;
 
 	@Test
+	@DirtiesContext
 	public void shouldSave_Success(){
 		// given
 		Penalty penalty = PenaltyFixture.create(true, null, VocFixture.createEmpty());
@@ -29,6 +31,4 @@ class PenaltyRepositoryTest {
 		// then
 		assertTrue(penaltyRepository.findById(1L).isPresent());
 	}
-
-
 }

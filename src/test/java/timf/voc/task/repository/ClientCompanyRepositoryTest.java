@@ -6,11 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import timf.voc.task.entity.ClientCompany;
-import timf.voc.task.entity.TransportCompany;
 import timf.voc.task.fixture.ClientCompanyFixture;
-import timf.voc.task.fixture.TransportCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
 
 @DataJpaTest
@@ -21,7 +20,8 @@ class ClientCompanyRepositoryTest {
 	ClientCompanyRepository clientCompanyRepository;
 
 	@Test
-	public void shouldSave_Success(){
+	@DirtiesContext
+	public void shouldSave_Success() {
 		// given
 		ClientCompany clientCompany = ClientCompanyFixture.create(VocFixture.createEmptyAsList(), 1000L, true);
 
@@ -31,6 +31,4 @@ class ClientCompanyRepositoryTest {
 		// then
 		assertTrue(clientCompanyRepository.findById(1L).isPresent());
 	}
-
-
 }

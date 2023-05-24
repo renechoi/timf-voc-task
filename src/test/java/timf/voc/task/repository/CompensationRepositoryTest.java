@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import timf.voc.task.entity.voc.aggregate.Compensation;
 import timf.voc.task.fixture.CompensationFixture;
@@ -19,7 +20,8 @@ class CompensationRepositoryTest {
 	CompensationRepository compensationRepository;
 
 	@Test
-	public void shouldSave_Success(){
+	@DirtiesContext
+	public void shouldSave_Success() {
 		// given
 		Compensation compensation = CompensationFixture.create(VocFixture.createEmpty());
 
@@ -29,6 +31,4 @@ class CompensationRepositoryTest {
 		// then
 		assertTrue(compensationRepository.findById(1L).isPresent());
 	}
-
-
 }
