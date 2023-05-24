@@ -2,6 +2,7 @@ package timf.voc.task.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,28 +13,30 @@ import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import timf.voc.task.entity.auditEntity.BaseEntity;
+import timf.voc.task.entity.voc.Voc;
 
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientCompany {
+public class ClientCompany extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private String companyName;
+	@Column(nullable = false)
+	private String companyName;
 
-    private String contacts;
+	private String contacts;
 
-    private String description;
+	private String description;
 
-    private Long compensationPayment;
+	private Long compensationPayment;
 
-    private boolean isCompensationPaid;
+	private boolean isCompensationPaid;
 
-    @OneToMany(mappedBy = "clientCompany")
-    private List<Voc> vocList;
+	@OneToMany(mappedBy = "clientCompany", cascade = CascadeType.ALL)
+	private List<Voc> vocList;
 }
