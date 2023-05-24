@@ -1,5 +1,6 @@
 package timf.voc.task.fixture;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import timf.voc.task.entity.ClientCompany;
@@ -26,11 +27,18 @@ public class VocFixture {
 	}
 
 	public static Voc createEmpty() {
-		return Voc.builder()
-			.build();
+		Voc voc = Voc.builder().build();
+		voc.setCreatedAt(LocalDateTime.now());
+		return voc;
 	}
 
 	public static List<Voc> createEmptyAsList() {
-		return List.of(Voc.builder().build(), Voc.builder().build());
+		Voc voc1 = Voc.builder().build();
+		voc1.setCreatedAt(LocalDateTime.now());
+
+		Voc voc2 = Voc.builder().build();
+		voc2.setCreatedAt(LocalDateTime.now());
+
+		return List.of(voc1, voc2);
 	}
 }

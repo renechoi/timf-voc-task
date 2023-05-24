@@ -1,5 +1,6 @@
 package timf.voc.task.fixture;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import timf.voc.task.entity.DeliveryDriver;
@@ -9,12 +10,15 @@ import timf.voc.task.entity.voc.Voc;
 public class DeliverDriverFixture {
 
 	public static DeliveryDriver create(List<Voc> vocList, boolean isPenaltyDeducted, TransportCompany transportCompany) {
-		return DeliveryDriver.builder()
+		DeliveryDriver deliveryDriver = DeliveryDriver.builder()
 			.Name("delivery driver1")
 			.salary(1000L)
 			.isPenaltyDeducted(isPenaltyDeducted)
 			.transportCompany(transportCompany)
 			.vocList(vocList)
 			.build();
+
+		deliveryDriver.setCreatedAt(LocalDateTime.now());
+		return deliveryDriver;
 	}
 }
