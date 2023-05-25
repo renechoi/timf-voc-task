@@ -46,4 +46,11 @@ public class Penalty {
 		this.voc = voc;
 		return this;
 	}
+
+	public void updateApproval(boolean approval, String content) {
+		this.signed = approval;
+		if (!approval){
+			this.objectionContent = content;
+		}
+	}
 }
