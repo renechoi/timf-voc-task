@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DeliveryDriver MyPage</title>
+    <link th:href="@{/css/delivery-driver-my-page.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h1>DeliveryDriver MyPage</h1>
+<br>
+<h4>현재 로그인한 운송 기사님: <a th:text="${myPage.deliveryDriver.name}"/></h4>
+<h5>페널티 누적 금액: <a th:text="${myPage.deliveryDriver.pendingPenaltyAmount}"></a></h5>
+<h2>My Voc List</h2>
+<h3>아래의 내용을 확인 후 승인 바랍니다.</h3>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>귀책 당사자</th>
+        <th>설명
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 건 관련 <br>귀책 내용을 나타냅니다</span>
+            </span></th>
+        <th>
+            운송 기사
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 건 관련 <br>운송기사님의 이름을 나타냅니다</span>
+            </span>
+        </th>
+        <th>고객사
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 건 관련 <br> 고객사 이름을 나타냅니다</span>
+            </span>
+        </th>
+        <th>배상 요구 금액</th>
+        <th>페널티 금액</th>
+        <th>페널티 내용</th>
+        <th>페널티 승인 여부</th>
+        <th>진행 상태
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 voc의 <br> 진행 현황을 나타냅니다<br><a style="font-size: 7px">*배상요청이 없는 경우 즉각 종료</a></span>
+            </span></th>
+        <th>승인하기</th>
+    </tr>
+    <tr th:each="voc, num : ${myPage.vcos}">
+        <td th:text="${num.count}"></td>
+        <td th:text="${voc.claimResponsibility.description}"></td>
+        <td th:text="${voc.description}"></td>
+        <td th:text="${voc.deliveryDriver.name}"></td>
+        <td th:text="${voc.clientCompany.companyName}"></td>
+        <td th:text="${voc.compensation ==null ? '-' : voc.compensation.amount}"></td>
+        <td th:text="${voc.penalty ==null ? '-' :  voc.penalty.amount}"></td>
+        <td th:text="${voc.penalty ==null ? '-' : voc.penalty.description}"></td>
+        <td th:text="${voc.compensation ==null ? '-' : voc.penalty.signed}"></td>
+        <td th:text="${voc.status.description}"></td>
+        <td>
+            <div  class="modal">
+                <div class="modal-content">
+                    <h4>승인/거절</h4>
+                    <form th:action="@{/voc/penalty/driver/approval}" method="post">
+                        <input type="hidden" id="deliveryDriverId" name="deliveryDriverId" th:value="${voc.deliveryDriver.id}">
+                        <input type="hidden" id="vocId" name="vocId" th:value="${voc.id}">
+                        <p>
+                                <input  type="radio" name="signed"  value="true" checked />
+                                <span>승인하기</span>
+                        </p>
+                        <p>
+                                <input  type="radio" name="signed" value="false"/>
+                                <span>거절하기</span>
+                        </p>
+                        <div class="input-field">
+                            <textarea th:field="${penalty.objectionContent}"  placeholder="거절 사유를 입력해주세요." name="objectionContent" class="materialize-textarea" maxlength="200"></textarea>
+                        </div>
+
+                        <button type="submit" >전송</button>
+                    </form>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<br>
+<div>
+    <form th:action="@{/claims}" method="get">
+        <button type="submit">claim 리스트 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/voc/compensation/list}" method="get">
+        <button type="submit">compensation 리스트 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/voc/list}" method="get">
+        <button type="submit">Voc 리스트 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/}" method="get">
+        <button type="submit">home 바로가기</button>
+    </form>
+</div>
+
+
+</body>
+</html>
+
+
+
