@@ -17,7 +17,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import timf.voc.task.dto.VocRequest;
+import lombok.ToString;
+import timf.voc.task.dto.request.VocRequest;
 import timf.voc.task.entity.ClientCompany;
 import timf.voc.task.entity.DeliveryDriver;
 import timf.voc.task.entity.auditEntity.BaseEntity;
@@ -65,7 +66,7 @@ public class Voc extends BaseEntity {
 
 	public Voc(String description, boolean claimReceived, boolean compensationRequested,
 		ClaimResponsibility claimResponsibility, DeliveryDriver deliveryDriver, ClientCompany clientCompany,
-		Compensation compensation, Penalty penalty) {
+		Compensation compensation, Penalty penalty, VocStatus vocStatus) {
 		this.description = description;
 		this.claimReceived = claimReceived;
 		this.compensationRequested = compensationRequested;
@@ -74,6 +75,7 @@ public class Voc extends BaseEntity {
 		this.clientCompany = clientCompany.mappedWith(this);
 		this.compensation = mapWith(compensation);
 		this.penalty = mapWith(penalty);
+		this.status = vocStatus;
 	}
 
 	public static Voc createVoc(VocRequest vocRequest, ClientCompany clientCompany, DeliveryDriver deliveryDriver) {
@@ -87,7 +89,8 @@ public class Voc extends BaseEntity {
 			deliveryDriver,
 			clientCompany,
 			compensation,
-			penalty);
+			penalty,
+			VocStatus.IN_PROGRESS);
 	}
 
 	private static Penalty createPenalty(VocRequest vocRequest) {
