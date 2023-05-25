@@ -40,8 +40,8 @@ public class VocResponse {
 			.claimResponsibility(voc.getClaimResponsibility())
 			.deliveryDriver(DeliveryDriverDto.from(voc.getDeliveryDriver()))
 			.clientCompany(ClientCompanyDto.from(voc.getClientCompany()))
-			.compensation(CompensationDto.from(voc.getCompensation()))
-			.penalty(PenaltyDto.from(voc.getPenalty()))
+			.compensation( voc.getCompensation() == null ? null : CompensationDto.from(voc.getCompensation()))
+			.penalty(voc.getPenalty() == null ? null : PenaltyDto.from(voc.getPenalty()))
 			.status(voc.getStatus())
 			.build();
 	}
