@@ -8,7 +8,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import timf.voc.task.dto.VocRequest;
+import timf.voc.task.dto.request.VocRequest;
 import timf.voc.task.entity.ClientCompany;
 import timf.voc.task.entity.DeliveryDriver;
 import timf.voc.task.entity.voc.Voc;

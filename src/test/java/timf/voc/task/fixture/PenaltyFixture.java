@@ -10,7 +10,7 @@ public class PenaltyFixture {
 			.description("penalty content1")
 			.amount(1000L)
 			.voc(voc)
-			.approved(approved)
+			.signed(approved)
 			.objectionContent(objectionContent)
 			.build();
 	}

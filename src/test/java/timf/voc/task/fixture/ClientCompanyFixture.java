@@ -15,7 +15,7 @@ public class ClientCompanyFixture {
 			.description("client company content1")
 			.compensationPayment(compensationPayment)
 			.isCompensationPaid(isCompensationPaid)
-			.vocList(vocList)
+			.vocs(vocList)
 			.build();
 
 		clientCompany.setCreatedAt(LocalDateTime.now());
@@ -30,7 +30,7 @@ public class ClientCompanyFixture {
 			.description("client company content1")
 			.compensationPayment(compensationPayment)
 			.isCompensationPaid(isCompensationPaid)
-			.vocList(vocList)
+			.vocs(vocList)
 			.build();
 
 		clientCompany.setCreatedAt(LocalDateTime.now());
