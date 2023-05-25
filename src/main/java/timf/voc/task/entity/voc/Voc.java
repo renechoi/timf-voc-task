@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import timf.voc.task.dto.request.VocRequest;
 import timf.voc.task.entity.ClientCompany;
 import timf.voc.task.entity.DeliveryDriver;
@@ -82,14 +81,8 @@ public class Voc extends BaseEntity {
 		Compensation compensation = createCompensation(vocRequest);
 		Penalty penalty = createPenalty(vocRequest);
 
-		return new Voc(vocRequest.getDescription(),
-			vocRequest.isClaimReceived(),
-			vocRequest.isCompensationRequested(),
-			vocRequest.getClaimResponsibility(),
-			deliveryDriver,
-			clientCompany,
-			compensation,
-			penalty,
+		return new Voc(vocRequest.getDescription(), vocRequest.isClaimReceived(), vocRequest.isCompensationRequested(),
+			vocRequest.getClaimResponsibility(), deliveryDriver, clientCompany, compensation, penalty,
 			VocStatus.IN_PROGRESS);
 	}
 
