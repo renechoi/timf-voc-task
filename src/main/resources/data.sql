@@ -6,12 +6,12 @@ VALUES ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 회사 1'),
  ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 회사 5');
 
 
-INSERT INTO delivery_driver (created_at, updated_at, is_deleted, name, salary, is_penalty_deducted, transport_company_id)
-VALUES ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 1', 10000, false, 1),
-       ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 2', 20000, false,1),
-       ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 3',30000, false,1),
-       ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 4',40000, true,2),
-       ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 5',50000, true,2);
+INSERT INTO delivery_driver (created_at, updated_at, is_deleted, name, salary, pending_penalty_amount, is_penalty_deducted, transport_company_id)
+VALUES ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 1', 10000, 0,false, 1),
+       ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 2', 20000, 0,false,1),
+       ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 3',30000, 0,false,1),
+       ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 4',40000, 0,true,2),
+       ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '운송 기사 5',50000, 0,true,2);
 
 
 INSERT INTO client_company (created_at, updated_at, is_deleted, company_name, contacts, description, compensation_payment, is_compensation_paid)
