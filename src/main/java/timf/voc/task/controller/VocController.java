@@ -45,6 +45,12 @@ public class VocController {
 		return "/voc/list";
 	}
 
+	/**
+	 * 배상(Compensation) API를 처리하는 컨트롤러를 별도로 만들지 않고 Voc 컨트롤러에서 처리하도록 하였다.
+	 * 그 이유는 배상 엔티티의 경우 독립된 엔티티이긴 하지만
+	 * 개념적으로 Voc aggregate의 종속되므로 root인 Voc의 관리하에 두어도 좋다고 보았기 때문이다.
+	 * 마찬가지 맥락에서 Service 관련 로직 역시 vocService에서 담당하도록 하였다.
+	 */
 	@GetMapping("/compensation/list")
 	public String getCompensations(Model model){
 		List<CompensationResponse> compensations = vocService.getCompensations();
