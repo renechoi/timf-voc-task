@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VOC-TASK API 리스트</title>
+</head>
+
+<body>
+<h1>VOC-TASK API 리스트</h1>
+
+<br>
+<div>
+    <form th:action="@{/claims}" method="get">
+        <button type="submit">claim 리스트 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/voc/list}" method="get">
+        <button type="submit">voc 리스트 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/voc/compensation/list}" method="get">
+        <button type="submit">compensation 리스트 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/voc/register}" method="get">
+        <button type="submit">voc 등록 페이지 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/delivery-driver/my-page}" method="get">
+        <input type="hidden" name="id" value="1">
+        <button type="submit">운송 기사 1 마이페이지</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/delivery-driver/my-page}" method="get">
+        <input type="hidden" name="id" value="2">
+        <button type="submit">운송 기사 2 마이페이지</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/delivery-driver/my-page}" method="get">
+        <input type="hidden" name="id" value="3">
+        <button type="submit">운송 기사 3 마이페이지</button>
+    </form>
+</div>
+<br>
+</body>
+</html>
