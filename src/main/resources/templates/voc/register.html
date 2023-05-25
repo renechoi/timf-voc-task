@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>voc 등록</title>
+    <link th:href="@{/css/voc-register.css}" rel="stylesheet">
+</head>
+<body>
+<h1 style="text-align: center">Voc 등록</h1>
+
+<form th:action="@{/voc/register}" method="post">
+    <input type="hidden" name="claimId" th:value="${voc.claimId}">
+    <div>
+        <label for="description">Voc 설명</label>
+        <textarea id="description" name="description"></textarea>
+    </div>
+    <div>
+        <label for="claimReceived">클레임 인입 여부</label>
+        <input type="checkbox" id="claimReceived" name="claimReceived">
+    </div>
+    <div>
+        <label for="compensationRequested">배상 요청 여부</label>
+        <input type="checkbox" id="compensationRequested" name="compensationRequested">
+    </div>
+    <div>
+        <label for="claimResponsibility">귀책 당사자</label>
+        <select id="claimResponsibility" name="claimResponsibility">
+            <option value="TRANSPORT_COMPANY">운송사</option>
+            <option value="CLIENT_COMPANY">고객사</option>
+        </select>
+    </div>
+    <div>
+        <label for="deliveryDriverId">운송사 기사님 id</label>
+        <input type="number" id="deliveryDriverId" name="deliveryDriverId">
+    </div>
+    <div>
+        <label for="clientCompanyId">고객사 id</label>
+        <input type="number" id="clientCompanyId" name="clientCompanyId">
+    </div>
+    <div>
+        <label for="compensationAmount">배상 금액</label>
+        <input type="number" id="compensationAmount" name="compensationAmount">
+    </div>
+    <div>
+        <label for="penaltyAmount">페널티 금액</label>
+        <input type="number" id="penaltyAmount" name="penaltyAmount">
+    </div>
+    <div>
+        <label for="compensationDescription">배상 내용</label>
+        <textarea id="compensationDescription" name="compensationDescription"></textarea>
+    </div>
+    <div>
+        <label for="penaltyDescription">페널티 내용</label>
+        <textarea id="penaltyDescription" name="penaltyDescription"></textarea>
+    </div>
+    <button type="submit">Voc 등록하기</button>
+</form>
+
+</body>
+</html>

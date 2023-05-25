@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Voc 리스트</title>
+    <link th:href="@{/css/voc-list.css}" rel="stylesheet">
+</head>
+<body>
+<h1>Voc List</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>귀책
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 건 관련 <br>귀책 당사자를 나타냅니다</span>
+            </span>
+        </th>
+        <th>설명
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 건 관련 <br>귀책 내용을 나타냅니다</span>
+            </span></th>
+        <th>클레임 인입 여부</th>
+        <th>보상 요구 여부</th>
+        <th>
+            운송 기사
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 건 관련 <br>운송기사님의 이름을 나타냅니다</span>
+            </span>
+        </th>
+        <th>고객사
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 건 관련 <br> 고객사 이름을 나타냅니다</span>
+            </span>
+        </th>
+        <th>배상 요구 금액</th>
+        <th>페널티 금액</th>
+        <th>페널티 내용</th>
+        <th>페널티 확인 여부</th>
+        <th>진행 상태
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 voc의 <br> 진행 현황을 나타냅니다</span>
+            </span></th>
+    </tr>
+    <tr th:each="voc : ${vocs}">
+        <td th:text="${voc.id}"></td>
+        <td th:text="${voc.claimResponsibility.description}"></td>
+        <td th:text="${voc.description}"></td>
+        <td th:text="${voc.claimReceived}"></td>
+        <td th:text="${voc.compensationRequested}"></td>
+        <td th:text="${voc.deliveryDriver.name}"></td>
+        <td th:text="${voc.clientCompany.companyName}"></td>
+        <td th:text="${voc.compensation.amount}"></td>
+        <td th:text="${voc.penalty.amount}"></td>
+        <td th:text="${voc.penalty.description}"></td>
+        <td th:text="${voc.penalty.signed}"></td>
+        <td th:text="${voc.status.description}"></td>
+    </tr>
+</table>
+</body>
+</html>
+
+
