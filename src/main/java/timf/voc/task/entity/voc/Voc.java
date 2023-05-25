@@ -112,4 +112,20 @@ public class Voc extends BaseEntity {
 	private static VocStatus judgeStatus(VocRequest vocRequest) {
 		return vocRequest.isCompensationRequested() ? VocStatus.IN_PROGRESS : VocStatus.END;
 	}
+
+	public void updatePenaltyStatus(boolean signed, String content) {
+		this.penalty.updateApproval(signed, content);
+	}
+
+	public void imposePenalty() {
+		deliveryDriver.updatePenaltyAmount(penalty.getAmount());
+	}
+
+	public void compensate() {
+		clientCompany.updateCompensation(compensation.getAmount());
+	}
+
+	public void updateStatus(VocStatus status) {
+		this.status = status;
+	}
 }
