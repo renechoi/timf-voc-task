@@ -46,4 +46,8 @@ public class ClientCompany extends BaseEntity {
 		this.vocs.add(voc);
 		return this;
 	}
+
+	public void updateCompensation(Long amount) {
+		this.compensationPayment += amount;
+	}
 }
