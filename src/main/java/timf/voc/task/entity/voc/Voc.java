@@ -83,7 +83,7 @@ public class Voc extends BaseEntity {
 
 		return new Voc(vocRequest.getDescription(), vocRequest.isClaimReceived(), vocRequest.isCompensationRequested(),
 			vocRequest.getClaimResponsibility(), deliveryDriver, clientCompany, compensation, penalty,
-			VocStatus.IN_PROGRESS);
+			judgeStatus(vocRequest));
 	}
 
 	private static Penalty createPenalty(VocRequest vocRequest) {
@@ -107,5 +107,9 @@ public class Voc extends BaseEntity {
 
 	private Penalty mapWith(Penalty penalty) {
 		return penalty == null ? null : penalty.mappedWith(this);
+	}
+
+	private static VocStatus judgeStatus(VocRequest vocRequest) {
+		return vocRequest.isCompensationRequested() ? VocStatus.IN_PROGRESS : VocStatus.END;
 	}
 }
