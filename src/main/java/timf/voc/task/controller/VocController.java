@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import timf.voc.task.dto.request.VocRequest;
+import timf.voc.task.dto.response.CompensationResponse;
 import timf.voc.task.dto.response.VocResponse;
 import timf.voc.task.service.VocService;
 
@@ -42,5 +43,12 @@ public class VocController {
 
 		model.addAttribute("vocs",vocs );
 		return "/voc/list";
+	}
+
+	@GetMapping("/compensation/list")
+	public String getCompensations(Model model){
+		List<CompensationResponse> compensations = vocService.getCompensations();
+		model.addAttribute("compensations", compensations);
+		return "/voc/compensation/list";
 	}
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>배상 목록</title>
+    <link th:href="@{/css/voc-compensation-list.css}" rel="stylesheet">
+</head>
+<body>
+<h1>배상 List</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>배상 설명</th>
+        <th>배상 요구자</th>
+        <th>배상 책임 당사자</th>
+        <th>배상 요구 금액</th>
+        <th>진행 상황
+            <span class="column-info-tooltip">
+                <div class="complementary-mark">?</div>
+                <span class="tooltip-text">해당 배상이 소속된 voc의 진행상황을 나타냅니다<br><a style="font-size: 7px">*배상요청이 없는 경우 즉각 종료</a></span>
+            </span>
+        </th>
+    </tr>
+    <tr th:each="compensation : ${compensations}">
+        <td th:text="${compensation.id}"></td>
+        <td th:text="${compensation.description}"></td>
+        <td th:text="${compensation.voc.claimResponsibility.description == '운송사' ? '고객사' : '운송사'}"></td>
+        <td th:text="${compensation.voc.claimResponsibility.description}"></td>
+        <td th:text="${compensation.amount}"></td>
+        <td th:text="${compensation.voc.status.description}"></td>
+    </tr>
+</table>
+<div>
+    <form th:action="@{/claims}" method="get">
+        <button type="submit">claim 리스트 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/voc/list}" method="get">
+        <button type="submit">Voc 리스트 바로가기</button>
+    </form>
+</div>
+
+</body>
+</html>
+

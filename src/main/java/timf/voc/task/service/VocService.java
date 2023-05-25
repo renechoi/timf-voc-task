@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import timf.voc.task.dto.request.VocRequest;
+import timf.voc.task.dto.response.CompensationResponse;
 import timf.voc.task.dto.response.VocResponse;
 import timf.voc.task.entity.ClientCompany;
 import timf.voc.task.entity.DeliveryDriver;
 import timf.voc.task.entity.voc.Voc;
+import timf.voc.task.repository.CompensationRepository;
 import timf.voc.task.repository.VocRepository;
 
 @Service
@@ -24,9 +26,10 @@ public class VocService {
 	private final ClaimService claimService;
 
 	private final VocRepository vocRepository;
+	private final CompensationRepository compensationRepository;
 
 	@Transactional
-	public void registerVoc(VocRequest vocRequest){
+	public void registerVoc(VocRequest vocRequest) {
 		ClientCompany clientCompany = getClientCompany(vocRequest);
 		DeliveryDriver deliveryDriver = getDeliveryDriver(vocRequest);
 
@@ -39,18 +42,19 @@ public class VocService {
 	}
 
 	public List<VocResponse> getVocs() {
-		return vocRepository.findAll()
-			.stream()
-			.map(VocResponse::from)
-			.collect(Collectors.toList());
+		return vocRepository.findAll().stream().map(VocResponse::from).collect(Collectors.toList());
+	}
+
+	public List<CompensationResponse> getCompensations() {
+		return compensationRepository.findAll().stream().map(CompensationResponse::from).collect(Collectors.toList());
 	}
 
 	private DeliveryDriver getDeliveryDriver(VocRequest vocRequest) {
-		return transportCompanyService.searchDeliveryDriverEntity(
-			vocRequest.getDeliveryDriverId());
+		return transportCompanyService.searchDeliveryDriverEntity(vocRequest.getDeliveryDriverId());
 	}
 
 	private ClientCompany getClientCompany(VocRequest vocRequest) {
 		return clientCompanyService.searchClientCompanyEntity(vocRequest.getClientCompanyId());
 	}
+
 }
