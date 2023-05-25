@@ -33,7 +33,7 @@ public class Penalty {
 	@JoinColumn(name = "voc_id")
 	private Voc voc;
 
-	private boolean approved;
+	private boolean signed;
 
 	@Column(length = 2000)
 	private String objectionContent;
