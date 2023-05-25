@@ -28,3 +28,25 @@ values ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '클레임 요청�
     ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '클레임 요청인 3', '클레임 내용 3', false),
     ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '클레임 요청인 4', '클레임 내용 4', false),
     ('2023-01-01 00:00:00', '2023-01-01 00:00:00', false, '클레임 요청인 5', '클레임 내용 5', false);
+
+
+insert into voc(created_at, updated_at, is_deleted, claim_received, claim_responsibility, compensation_requested, description, status, client_company_id, delivery_driver_id)
+values ('2023-05-20 00:00:00', '2023-05-20 00:00:00', false,true, 'TRANSPORT_COMPANY', true, 'VOC 내용입니다 1', 'IN_PROGRESS', 1, 1),
+ ('2023-05-20 00:00:00', '2023-05-20 00:00:00', false,true, 'TRANSPORT_COMPANY', true, 'VOC 내용입니다 2', 'IN_PROGRESS', 2, 1),
+ ('2023-05-20 00:00:00', '2023-05-20 00:00:00', false,true, 'CLIENT_COMPANY', true, 'VOC 내용입니다 3', 'IN_PROGRESS', 1, 2),
+ ('2023-05-20 00:00:00', '2023-05-20 00:00:00', false,true, 'TRANSPORT_COMPANY', true, 'VOC 내용입니다 4', 'IN_PROGRESS', 2, 2),
+ ('2023-05-20 00:00:00', '2023-05-20 00:00:00', false,true, 'CLIENT_COMPANY', false, 'VOC 내용입니다 5', 'END', 3, 3);
+
+
+insert into compensation(amount, description, voc_id)
+VALUES (10000, '배상 요구 사항: 다음의 이유로 배상 요청 발생 1', 1),
+       (25000, '배상 요구 사항: 다음의 이유로 배상 요청 발생 2', 2),
+       (50000, '배상 요구 사항: 다음의 이유로 배상 요청 발생 3', 3),
+       (30000, '배상 요구 사항: 다음의 이유로 배상 요청 발생 4', 4);
+
+
+insert into penalty(amount, description, objection_content, signed, voc_id)
+VALUES (10000, '페널티 내용: 다음과 같은 이유로 페널티 부과 1', null, false,1),
+       (25000, '페널티 내용: 다음과 같은 이유로 페널티 부과 2', null, false,2),
+       (50000, '페널티 내용: 다음과 같은 이유로 페널티 부과 3', null, false,3),
+       (30000, '페널티 내용: 다음과 같은 이유로 페널티 부과 4', null, false,4);
