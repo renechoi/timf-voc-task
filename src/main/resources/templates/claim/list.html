@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>인입된 Claim 리스트</title>
+    <link th:href="@{/css/claim-list.css}" rel="stylesheet">
+</head>
+<body>
+<h1>Claims List</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>클레임 요청인</th>
+        <th>연락처</th>
+        <th>응답 여부</th>
+        <th>Voc 생성</th>
+    </tr>
+    <tr th:each="claim : ${claims}">
+        <td th:text="${claim.id}"></td>
+        <td th:text="${claim.personName}"></td>
+        <td th:text="${claim.content}"></td>
+        <td th:text="${claim.handled}"></td>
+        <td>
+            <form th:action="@{/voc/register}" method="get">
+                <input type="hidden" name="claimId" th:value="${claim.id}">
+                <button type="submit">Voc 생성</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<div>
+    <form th:action="@{/voc/list}" method="get">
+        <button type="submit">Voc 리스트 바로가기</button>
+    </form>
+</div>
+
+</body>
+</html>
