@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
+import timf.voc.task.dto.request.DeliveryDriverPenaltyRequest;
 import timf.voc.task.dto.request.VocRequest;
 import timf.voc.task.dto.response.CompensationResponse;
 import timf.voc.task.dto.response.VocResponse;
@@ -56,5 +57,11 @@ public class VocController {
 		List<CompensationResponse> compensations = vocService.getCompensations();
 		model.addAttribute("compensations", compensations);
 		return "/voc/compensation/list";
+	}
+
+	@PostMapping("/penalty/driver/approval")
+	public String handleDriverPenaltyApproval(DeliveryDriverPenaltyRequest deliveryDriverPenaltyRequest){
+		vocService.handleDriverPenalty(deliveryDriverPenaltyRequest);
+		return "redirect:/delivery-driver/my-page?id=" + deliveryDriverPenaltyRequest.getDeliveryDriverId();
 	}
 }

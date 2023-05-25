@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import timf.voc.task.dto.request.DeliveryDriverPenaltyRequest;
 import timf.voc.task.dto.request.VocRequest;
 import timf.voc.task.dto.response.CompensationResponse;
 import timf.voc.task.dto.response.VocResponse;
 import timf.voc.task.entity.ClientCompany;
 import timf.voc.task.entity.DeliveryDriver;
 import timf.voc.task.entity.voc.Voc;
+import timf.voc.task.entity.voc.aggregate.VocStatus;
+import timf.voc.task.exception.VocNotFoundException;
 import timf.voc.task.repository.CompensationRepository;
 import timf.voc.task.repository.VocRepository;
 
@@ -49,12 +52,38 @@ public class VocService {
 		return compensationRepository.findAll().stream().map(CompensationResponse::from).collect(Collectors.toList());
 	}
 
+	@Transactional
+	public void handleDriverPenalty(DeliveryDriverPenaltyRequest deliveryDriverPenaltyRequest) {
+
+		Voc voc = findById(deliveryDriverPenaltyRequest.getVocId());
+		voc.updatePenaltyStatus(deliveryDriverPenaltyRequest.isSigned(), deliveryDriverPenaltyRequest.getObjectionContent());
+
+		if (deliveryDriverPenaltyRequest.isSigned()){
+			voc.imposePenalty();
+			voc.compensate();
+			voc.updateStatus(VocStatus.END);
+			return;
+
+			/**
+			 * 아래의 방식처럼 각각의 service layer에 역할을 위임할 수도 있지만
+			 * voc 객체가 행위를 처리하도록 페널티 부과와 보상 처리 로직을 위임했다.
+			 *
+			 * transportCompanyService.imposePenalty(voc.getPenalty().getAmount());
+			 * clientCompanyService.compensate(voc.getCompensation().getAmount());
+			 */
+		}
+	}
+
 	private DeliveryDriver getDeliveryDriver(VocRequest vocRequest) {
 		return transportCompanyService.searchDeliveryDriverEntity(vocRequest.getDeliveryDriverId());
 	}
 
 	private ClientCompany getClientCompany(VocRequest vocRequest) {
 		return clientCompanyService.searchClientCompanyEntity(vocRequest.getClientCompanyId());
+	}
+
+	private Voc findById(Long id) {
+		return vocRepository.findById(id).orElseThrow(VocNotFoundException::new);
 	}
 
 }
