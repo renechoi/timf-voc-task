@@ -20,6 +20,7 @@ public class DeliveryDriverDto {
 	private Long id;
 	private String Name;
 	private Long salary;
+	private Long pendingPenaltyAmount;
 	private boolean isPenaltyDeducted;
 	private TransportCompanyDto transportCompany;
 	private List<VocDto> vocs;
