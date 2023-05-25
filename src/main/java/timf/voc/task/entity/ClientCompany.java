@@ -40,10 +40,10 @@ public class ClientCompany extends BaseEntity {
 	private boolean isCompensationPaid;
 
 	@OneToMany(mappedBy = "clientCompany", cascade = CascadeType.ALL)
-	private List<Voc> vocList;
+	private List<Voc> vocs;
 
 	public ClientCompany mappedWith(Voc voc) {
-		this.vocList.add(voc);
+		this.vocs.add(voc);
 		return this;
 	}
 }
