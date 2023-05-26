@@ -45,8 +45,8 @@ VALUES (10000, '배상 요구 사항: 다음의 이유로 배상 요청 발생 1
        (30000, '배상 요구 사항: 다음의 이유로 배상 요청 발생 4', 4);
 
 
-insert into penalty(amount, description, objection_content, signed, voc_id)
-VALUES (10000, '페널티 내용: 다음과 같은 이유로 페널티 부과 1', null, false,1),
-       (25000, '페널티 내용: 다음과 같은 이유로 페널티 부과 2', null, false,2),
-       (50000, '페널티 내용: 다음과 같은 이유로 페널티 부과 3', null, false,3),
-       (30000, '페널티 내용: 다음과 같은 이유로 페널티 부과 4', null, false,4);
+insert into penalty(amount, description, objection_content, penalty_approval, voc_id)
+VALUES (10000, '페널티 내용: 다음과 같은 이유로 페널티 부과 1', null, 'UNCHECKED',1),
+       (25000, '페널티 내용: 다음과 같은 이유로 페널티 부과 2', null, 'UNCHECKED',2),
+       (50000, '페널티 내용: 다음과 같은 이유로 페널티 부과 3', null, 'UNCHECKED',3),
+       (30000, '페널티 내용: 다음과 같은 이유로 페널티 부과 4', null, 'UNCHECKED',4);
