@@ -34,7 +34,7 @@
         <th>배상 요구 금액</th>
         <th>페널티 금액</th>
         <th>페널티 내용</th>
-        <th>페널티 확인 여부</th>
+        <th>페널티 승인 여부</th>
         <th>진행 상태
             <span class="column-info-tooltip">
                 <div class="complementary-mark">?</div>
@@ -52,7 +52,7 @@
         <td th:text="${voc.compensation ==null ? '-' : voc.compensation.amount}"></td>
         <td th:text="${voc.penalty ==null ? '-' :  voc.penalty.amount}"></td>
         <td th:text="${voc.penalty ==null ? '-' : voc.penalty.description}"></td>
-        <td th:text="${voc.compensation ==null ? '-' : voc.penalty.signed}"></td>
+        <td th:text="${voc.compensation ==null ? '-' : voc.penalty.penaltyApproval.description}"></td>
         <td th:text="${voc.status.description}"></td>
     </tr>
 </table>
@@ -66,6 +66,12 @@
 <div>
     <form th:action="@{/voc/compensation/list}" method="get">
         <button type="submit">compensation 리스트 바로가기</button>
+    </form>
+</div>
+<br>
+<div>
+    <form th:action="@{/}" method="get">
+        <button type="submit">home 바로가기</button>
     </form>
 </div>
 
