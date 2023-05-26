@@ -28,6 +28,7 @@ public class VocService {
 	private final ClientCompanyService clientCompanyService;
 	private final TransportCompanyService transportCompanyService;
 	private final ClaimService claimService;
+	private final NotificationService notificationService;
 
 	private final VocRepository vocRepository;
 	private final CompensationRepository compensationRepository;
@@ -44,7 +45,7 @@ public class VocService {
 		 */
 		claimService.handleStatus(vocRequest, true);
 
-		// todo 구독하는 page에 새로운 voc가 등록되었으니 화면을 refresh 해야 한다는 알림 서비스 구현
+		notificationService.notifyVocUpdate();
 	}
 
 	public List<VocResponse> getVocs() {
