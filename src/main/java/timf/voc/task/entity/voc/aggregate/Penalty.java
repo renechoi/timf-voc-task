@@ -2,6 +2,8 @@ package timf.voc.task.entity.voc.aggregate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,13 +35,17 @@ public class Penalty {
 	@JoinColumn(name = "voc_id")
 	private Voc voc;
 
-	private boolean signed;
+	@Enumerated(EnumType.STRING)
+	private PenaltyApproval penaltyApproval;
 
 	@Column(length = 2000)
 	private String objectionContent;
 
 	public static Penalty of(String penaltyDescription, Long penaltyAmount) {
-		return Penalty.builder().description(penaltyDescription).amount(penaltyAmount).build();
+		return Penalty.builder()
+			.description(penaltyDescription)
+			.amount(penaltyAmount)
+			.penaltyApproval(PenaltyApproval.UNCHECKED).build();
 	}
 
 	public Penalty mappedWith(Voc voc) {
@@ -47,9 +53,9 @@ public class Penalty {
 		return this;
 	}
 
-	public void updateApproval(boolean approval, String content) {
-		this.signed = approval;
-		if (!approval){
+	public void updateApproval(PenaltyApproval approval, String content) {
+		this.penaltyApproval = approval;
+		if (approval==PenaltyApproval.DENIED){
 			this.objectionContent = content;
 		}
 	}

@@ -2,6 +2,7 @@ package timf.voc.task.fixture;
 
 import timf.voc.task.entity.voc.aggregate.Penalty;
 import timf.voc.task.entity.voc.Voc;
+import timf.voc.task.entity.voc.aggregate.PenaltyApproval;
 
 public class PenaltyFixture {
 
@@ -10,7 +11,7 @@ public class PenaltyFixture {
 			.description("penalty content1")
 			.amount(1000L)
 			.voc(voc)
-			.signed(approved)
+			.penaltyApproval(PenaltyApproval.APPROVED)
 			.objectionContent(objectionContent)
 			.build();
 	}

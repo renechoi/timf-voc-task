@@ -14,6 +14,7 @@ import timf.voc.task.dto.response.VocResponse;
 import timf.voc.task.entity.ClientCompany;
 import timf.voc.task.entity.DeliveryDriver;
 import timf.voc.task.entity.voc.Voc;
+import timf.voc.task.entity.voc.aggregate.PenaltyApproval;
 import timf.voc.task.entity.voc.aggregate.VocStatus;
 import timf.voc.task.exception.VocNotFoundException;
 import timf.voc.task.repository.CompensationRepository;
@@ -42,6 +43,8 @@ public class VocService {
 		 * claim status를 현재 메서드에서 처리해주는 이유는 같은 트랜잭션 내의 동작이라고 보았기 때문이다.
 		 */
 		claimService.handleStatus(vocRequest, true);
+
+		// todo 구독하는 page에 새로운 voc가 등록되었으니 화면을 refresh 해야 한다는 알림 서비스 구현
 	}
 
 	public List<VocResponse> getVocs() {
@@ -56,9 +59,10 @@ public class VocService {
 	public void handleDriverPenalty(DeliveryDriverPenaltyRequest deliveryDriverPenaltyRequest) {
 
 		Voc voc = findById(deliveryDriverPenaltyRequest.getVocId());
-		voc.updatePenaltyStatus(deliveryDriverPenaltyRequest.isSigned(), deliveryDriverPenaltyRequest.getObjectionContent());
+		voc.updatePenaltyStatus(deliveryDriverPenaltyRequest.getPenaltyApproval(),
+			deliveryDriverPenaltyRequest.getObjectionContent());
 
-		if (deliveryDriverPenaltyRequest.isSigned()){
+		if (deliveryDriverPenaltyRequest.getPenaltyApproval() == PenaltyApproval.APPROVED) {
 			voc.imposePenalty();
 			voc.compensate();
 			voc.updateStatus(VocStatus.END);
@@ -85,5 +89,4 @@ public class VocService {
 	private Voc findById(Long id) {
 		return vocRepository.findById(id).orElseThrow(VocNotFoundException::new);
 	}
-
 }

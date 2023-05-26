@@ -24,6 +24,7 @@ import timf.voc.task.entity.auditEntity.BaseEntity;
 import timf.voc.task.entity.voc.aggregate.ClaimResponsibility;
 import timf.voc.task.entity.voc.aggregate.Compensation;
 import timf.voc.task.entity.voc.aggregate.Penalty;
+import timf.voc.task.entity.voc.aggregate.PenaltyApproval;
 import timf.voc.task.entity.voc.aggregate.VocStatus;
 
 @Entity
@@ -113,8 +114,8 @@ public class Voc extends BaseEntity {
 		return vocRequest.isCompensationRequested() ? VocStatus.IN_PROGRESS : VocStatus.END;
 	}
 
-	public void updatePenaltyStatus(boolean signed, String content) {
-		this.penalty.updateApproval(signed, content);
+	public void updatePenaltyStatus(PenaltyApproval penaltyApproval, String content) {
+		this.penalty.updateApproval(penaltyApproval, content);
 	}
 
 	public void imposePenalty() {

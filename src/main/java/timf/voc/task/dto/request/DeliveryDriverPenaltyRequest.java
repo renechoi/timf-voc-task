@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import timf.voc.task.entity.voc.aggregate.PenaltyApproval;
 
 @Getter
 @Setter
@@ -14,10 +15,8 @@ import lombok.Setter;
 public class DeliveryDriverPenaltyRequest {
 
 	private Long deliveryDriverId;
-
 	private Long vocId;
-
-	private boolean signed;
+	private PenaltyApproval penaltyApproval;
 	private String objectionContent;
 
 	public static DeliveryDriverPenaltyRequest empty() {

@@ -56,7 +56,7 @@
         <td th:text="${voc.compensation ==null ? '-' : voc.compensation.amount}"></td>
         <td th:text="${voc.penalty ==null ? '-' :  voc.penalty.amount}"></td>
         <td th:text="${voc.penalty ==null ? '-' : voc.penalty.description}"></td>
-        <td th:text="${voc.compensation ==null ? '-' : voc.penalty.signed}"></td>
+        <td th:text="${voc.penalty ==null ? '-' : voc.penalty.penaltyApproval.description}"></td>
         <td th:text="${voc.status.description}"></td>
         <td>
             <div  class="modal">
@@ -66,11 +66,11 @@
                         <input type="hidden" id="deliveryDriverId" name="deliveryDriverId" th:value="${voc.deliveryDriver.id}">
                         <input type="hidden" id="vocId" name="vocId" th:value="${voc.id}">
                         <p>
-                                <input  type="radio" name="signed"  value="true" checked />
+                                <input  type="radio" name="penaltyApproval"  value="APPROVED" checked />
                                 <span>승인하기</span>
                         </p>
                         <p>
-                                <input  type="radio" name="signed" value="false"/>
+                                <input  type="radio" name="penaltyApproval" value="DENIED"/>
                                 <span>거절하기</span>
                         </p>
                         <div class="input-field">

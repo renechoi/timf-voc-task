@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import timf.voc.task.config.converter.EntityAndDtoConverter;
 import timf.voc.task.entity.voc.aggregate.Penalty;
+import timf.voc.task.entity.voc.aggregate.PenaltyApproval;
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ public class PenaltyDto {
 	private String description;
 	private Long amount;
 	private VocDto voc;
-	private boolean signed;
+	private PenaltyApproval penaltyApproval;
 	private String objectionContent;
 
 	public static PenaltyDto from(Penalty penalty) {
