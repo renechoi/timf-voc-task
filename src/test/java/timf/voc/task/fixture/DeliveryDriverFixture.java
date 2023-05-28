@@ -15,6 +15,7 @@ public class DeliveryDriverFixture {
 			.salary(1000L)
 			.isPenaltyDeducted(isPenaltyDeducted)
 			.transportCompany(transportCompany)
+			.pendingPenaltyAmount(0L)
 			.vocList(vocList)
 			.build();
 
@@ -28,6 +29,7 @@ public class DeliveryDriverFixture {
 			.Name("delivery driver1")
 			.salary(1000L)
 			.isPenaltyDeducted(isPenaltyDeducted)
+			.pendingPenaltyAmount(0L)
 			.transportCompany(transportCompany)
 			.vocList(vocList)
 			.build();

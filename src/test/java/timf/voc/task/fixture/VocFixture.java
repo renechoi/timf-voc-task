@@ -29,4 +29,11 @@ public class VocFixture {
 		return Stream.of(createEmpty(), createEmpty())
 			.collect(Collectors.toList());
 	}
+
+	public static List<Voc> createList(){
+		return Stream.of(
+			create(VocRequestFixture.create("request1"), DeliveryDriverFixture.create(createEmptyAsList(), false, null), ClientCompanyFixture.create(createEmptyAsList(),0L, false)),
+			create(VocRequestFixture.create("request2"), DeliveryDriverFixture.create(createEmptyAsList(), false, null), ClientCompanyFixture.create(createEmptyAsList(),0L, false))
+			).collect(Collectors.toList());
+	}
 }
