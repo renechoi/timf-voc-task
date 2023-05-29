@@ -22,4 +22,8 @@ public class DeliveryDriverPenaltyRequest {
 	public static DeliveryDriverPenaltyRequest empty() {
 		return new DeliveryDriverPenaltyRequest();
 	}
+
+	public boolean isApproved(){
+		return this.penaltyApproval == PenaltyApproval.APPROVED;
+	}
 }

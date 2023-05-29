@@ -14,7 +14,6 @@ import timf.voc.task.dto.response.VocResponse;
 import timf.voc.task.entity.ClientCompany;
 import timf.voc.task.entity.DeliveryDriver;
 import timf.voc.task.entity.voc.Voc;
-import timf.voc.task.entity.voc.aggregate.PenaltyApproval;
 import timf.voc.task.entity.voc.aggregate.VocStatus;
 import timf.voc.task.exception.VocNotFoundException;
 import timf.voc.task.repository.CompensationRepository;
@@ -63,7 +62,7 @@ public class VocService {
 		voc.updatePenaltyStatus(deliveryDriverPenaltyRequest.getPenaltyApproval(),
 			deliveryDriverPenaltyRequest.getObjectionContent());
 
-		if (deliveryDriverPenaltyRequest.getPenaltyApproval() == PenaltyApproval.APPROVED) {
+		if (deliveryDriverPenaltyRequest.isApproved()) {
 			voc.imposePenalty();
 			voc.compensate();
 			voc.updateStatus(VocStatus.END);
