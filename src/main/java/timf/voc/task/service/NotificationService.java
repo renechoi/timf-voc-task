@@ -9,7 +9,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import lombok.Getter;
+
+/**
+ * 테스트 코드 작성을 위한 @Getter 추가
+ */
 @Service
+@Getter
 public class NotificationService {
 
     /**
