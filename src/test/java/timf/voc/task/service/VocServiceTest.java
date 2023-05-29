@@ -99,7 +99,7 @@ class VocServiceTest {
 		ClientCompany clientCompany = createClientCompany(vocRequest);
 		DeliveryDriver deliveryDriver = createDeliveryDriver(vocRequest);
 
-		Voc voc = Voc.createVoc(createVocRequest(), clientCompany, deliveryDriver);
+		Voc voc = createVoc(clientCompany, deliveryDriver);
 		when(vocRepository.findById(deliveryDriverPenaltyRequest.getVocId())).thenReturn(Optional.of(voc));
 
 		// when
@@ -121,7 +121,7 @@ class VocServiceTest {
 		ClientCompany clientCompany = createClientCompany(vocRequest);
 		DeliveryDriver deliveryDriver = createDeliveryDriver(vocRequest);
 
-		Voc voc = Voc.createVoc(createVocRequest(), clientCompany, deliveryDriver);
+		Voc voc = createVoc(clientCompany, deliveryDriver);
 		when(vocRepository.findById(deliveryDriverPenaltyRequest.getVocId())).thenReturn(Optional.of(voc));
 
 		// when
@@ -136,7 +136,7 @@ class VocServiceTest {
 	@Test
 	void shouldGetVocs_Success() {
 		// given
-		List<Voc> vocs = VocFixture.createList();
+		List<Voc> vocs = createVocs();
 		when(vocRepository.findAll()).thenReturn(vocs);
 
 		// when
@@ -175,12 +175,21 @@ class VocServiceTest {
 	@NotNull
 	private DeliveryDriver createDeliveryDriver(VocRequest vocRequest) {
 		return DeliveryDriverFixture.create(vocRequest.getDeliveryDriverId(),
-			VocFixture.createEmptyAsList(), false,
+			VocFixture.createList(), false,
 			TransportCompanyFixture.create());
 	}
 
 	@NotNull
 	private VocRequest createVocRequest() {
 		return VocRequestFixture.create("voc request1");
+	}
+
+	@NotNull
+	private Voc createVoc(ClientCompany clientCompany, DeliveryDriver deliveryDriver) {
+		return Voc.createVoc(createVocRequest(), clientCompany, deliveryDriver);
+	}
+
+	private List<Voc> createVocs() {
+		return VocFixture.createList();
 	}
 }
