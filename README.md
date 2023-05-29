@@ -40,7 +40,7 @@
 ![CLASS_DIAGRAM](docs/diagrams/class-diagram.png)
 
   
-### 5. 특이 사항 (java doc)
+### 5. 특이 사항 (java docs)
 
 #### 1. `VocService.registerVoc()`
    ![ERD](docs/java-docs/VocService.registerVoc%20.png)
@@ -64,8 +64,15 @@
   ![ERD](docs/java-docs/VocControllerTest.registerVoc_Success.png)
 
 
+### 6. 시연 영상 및 테스트 코드 통과 현황 
+- 시연 영상
+  ![동영상 데모](docs/demo/voc-demo.mp4)
+- 테스트 코드
+  ![ERD](docs/demo/test1.png)
+  ![ERD](docs/demo/test2.png)
 
-### 6. 구동 방법
+
+### 7. 구동 방법
 - 필요한 환경 변수는 다음과 같다. `.env` 파일을 통해 docker 빌드시 db의 root 계정을 생성해주고 어플리케이션 구동시 주입해준다.
   - `{SPRING_DATA_SOURCE_USERNAME}`
   - `{SPRING_DATA_SOURCE_PASSWORD}`
