@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/Rene/Documents/rene/project/task/timf-voc-task/src/main</OriginalElement>
+  <nodes>
+    <node x="1197.8482867361604" y="-393.87763043012774">timf.voc.task.service.NotificationService</node>
+    <node x="560.2949042713386" y="81.63663999815446">timf.voc.task.entity.DeliveryDriver</node>
+    <node x="841.5815450188286" y="-204.14155487751748">timf.voc.task.repository.VocRepository</node>
+    <node x="2245.9630204362084" y="-393.87763043012774">timf.voc.task.exception.ClientCompanyNotFoundException</node>
+    <node x="730.9492125237333" y="650.0085706602803">timf.voc.task.dto.VocDto</node>
+    <node x="730.9492125237333" y="435.96177426334805">timf.voc.task.dto.response.VocResponse</node>
+    <node x="1521.2793415195947" y="-331.58939882702134">timf.voc.task.repository.ClientCompanyRepository</node>
+    <node x="835.9757796542754" y="180.8303767220085">timf.voc.task.entity.voc.aggregate.VocStatus</node>
+    <node x="1056.495495178601" y="555.1413465102675">timf.voc.task.dto.DeliveryDriverDto</node>
+    <node x="952.1032532422487" y="-393.87763043012774">timf.voc.task.controller.NotificationController</node>
+    <node x="462.33703105131514" y="180.8303767220085">timf.voc.task.dto.request.VocRequest</node>
+    <node x="1166.1070805156098" y="180.8303767220085">timf.voc.task.entity.voc.aggregate.PenaltyApproval</node>
+    <node x="356.8482867361604" y="-95.01398671385093">timf.voc.task.entity.Claim</node>
+    <node x="1053.6832593236663" y="-204.14155487751748">timf.voc.task.repository.DeliveryDriverRepository</node>
+    <node x="1010.5454520476337" y="459.5595033879001">timf.voc.task.dto.response.DeliveryDriverMyPageResponse</node>
+    <node x="1922.0763316739024" y="-270.99890850021256">timf.voc.task.repository.PenaltyRepository</node>
+    <node x="1928.0763316739024" y="-148.1201865702975">timf.voc.task.dto.request.ClaimRequest</node>
+    <node x="1922.0763316739024" y="-209.55954753525486">timf.voc.task.dto.response.ClaimResponse</node>
+    <node x="1924.5763316739024" y="-332.43826946517004">timf.voc.task.config.converter.EntityAndDtoConverter</node>
+    <node x="527.7923550165317" y="280.02411344586255">timf.voc.task.dto.CompensationDto</node>
+    <node x="730.9492125237333" y="515.0295798140365">timf.voc.task.dto.ClientCompanyDto</node>
+    <node x="560.2949042713386" y="-204.14155487751748">timf.voc.task.repository.CompensationRepository</node>
+    <node x="111.08809479387673" y="-314.465154787801">timf.voc.task.controller.ClaimController</node>
+    <node x="2245.9630204362084" y="-209.55954753525486">timf.voc.task.exception.VocNotFoundException</node>
+    <node x="1023.4101555945931" y="180.8303767220085">timf.voc.task.entity.voc.aggregate.Penalty</node>
+    <node x="329.3482867361604" y="-314.465154787801">timf.voc.task.service.ClaimService</node>
+    <node x="1415.138771948159" y="180.8303767220085">timf.voc.task.dto.request.DeliveryDriverPenaltyRequest</node>
+    <node x="1336.8482867361604" y="-204.14155487751748">timf.voc.task.repository.TransportCompanyRepository</node>
+    <node x="642.5" y="-393.87763043012774">timf.voc.task.controller.VocController</node>
+    <node x="1521.2793415195947" y="-292.9934504669902">timf.voc.task.controller.DeliveryDriverController</node>
+    <node x="2245.9630204362084" y="-275.6333287885765">timf.voc.task.exception.ClaimNotFoundException</node>
+    <node x="1056.495495178601" y="688.7531876680235">timf.voc.task.dto.PenaltyDto</node>
+    <node x="765.546816147925" y="-314.465154787801">timf.voc.task.service.VocService</node>
+    <node x="781.0002857142857" y="81.63663999815446">timf.voc.task.entity.voc.Voc</node>
+    <node x="411.8763092535994" y="650.0085706602803">timf.voc.task.dto.response.CompensationResponse</node>
+    <node x="1196.238832909566" y="-292.9934504669902">timf.voc.task.service.TransportCompanyService</node>
+    <node x="317.3482867361604" y="-204.14155487751748">timf.voc.task.repository.ClaimRepository</node>
+    <node x="2245.9630204362084" y="-339.6390416033961">timf.voc.task.exception.DeliveryDriverNotFoundException</node>
+    <node x="589.1956015274293" y="-93.81795496723396">timf.voc.task.entity.auditEntity.BaseEntity</node>
+    <node x="1056.495495178601" y="631.7029691280727">timf.voc.task.dto.TransportCompanyDto</node>
+    <node x="627.3462700005971" y="180.8303767220085">timf.voc.task.entity.voc.aggregate.ClaimResponsibility</node>
+    <node x="750.546816147925" y="-95.01398671385093">timf.voc.task.entity.ClientCompany</node>
+    <node x="961.2341663288345" y="-26.678399080541794">timf.voc.task.entity.voc.aggregate.Compensation</node>
+    <node x="1196.238832909566" y="-331.58939882702134">timf.voc.task.service.ClientCompanyService</node>
+    <node x="291.001403547896" y="81.63663999815446">timf.voc.task.entity.TransportCompany</node>
+    <node x="1922.0763316739024" y="-393.87763043012774">timf.voc.task.TimfVocTaskApplication</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="timf.voc.task.entity.ClientCompany" target="timf.voc.task.entity.auditEntity.BaseEntity" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="832.046816147925" y="-81.01398671385095" />
+      <point x="653.1953158131436" y="-81.01398671385095" />
+      <point x="-2.857142856882433E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.service.VocService" target="timf.voc.task.service.TransportCompanyService" relationship="TO_ONE">
+      <point x="4.7058823537327044E-4" y="-14.0" />
+      <point x="832.0472867361605" y="-289.8581451053069" />
+      <point x="1319.238832909566" y="-289.8581451053069" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.CompensationDto" target="timf.voc.task.dto.VocDto" relationship="TO_ONE">
+      <point x="4.285714287561859E-4" y="14.0" />
+      <point x="619.2927835879605" y="603.0982994318329" />
+      <point x="774.6386255794503" y="603.0982994318329" />
+      <point x="774.6386255794503" y="664.0085706602803" />
+      <point x="52.0" y="0.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.VocDto" target="timf.voc.task.dto.CompensationDto" relationship="TO_ONE">
+      <point x="30.0" y="-14.0" />
+      <point x="758.7070694597724" y="650.0085706602803" />
+      <point x="758.7070694597724" y="620.7547526609271" />
+      <point x="604.2927835879605" y="620.7547526609271" />
+      <point x="-14.999571428571244" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.DeliveryDriverDto" target="timf.voc.task.dto.TransportCompanyDto" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="1160.9586529555968" y="555.1413465102675" />
+      <point x="1160.9586529555968" y="623.0147694374126" />
+      <point x="1161.16979760306" y="623.0147694374126" />
+      <point x="-3.8256975755409712" y="-4.377445204817491" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.VocResponse" target="timf.voc.task.dto.CompensationDto" relationship="TO_ONE">
+      <point x="30.0" y="-14.0" />
+      <point x="678.2203417839387" y="435.96177426334805" />
+      <point x="58.92798676740699" y="14.164873603445415" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.aggregate.Penalty" target="timf.voc.task.entity.voc.Voc" relationship="TO_ONE">
+      <point x="14.961569296556263" y="14.0" />
+      <point x="1090.8717248911494" y="91.07598882073336" />
+      <point x="793.3021206839435" y="91.07598882073336" />
+      <point x="-26.69816503034224" y="10.348200475434624" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.Voc" target="timf.voc.task.entity.voc.aggregate.Penalty" relationship="TO_ONE">
+      <point x="-19.25193199059413" y="10.348200475434624" />
+      <point x="1075.3430305192066" y="105.98484047358909" />
+      <point x="-0.567125075386457" y="-8.145221688252036" />
+    </edge>
+    <edge source="timf.voc.task.controller.NotificationController" target="timf.voc.task.service.NotificationService" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="1055.6032532422487" y="-379.87763043012774" />
+      <point x="1292.8482867361604" y="-379.87763043012774" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.entity.Claim" target="timf.voc.task.entity.auditEntity.BaseEntity" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="402.8482867361604" y="-81.0139867138509" />
+      <point x="653.1953158131436" y="-81.0139867138509" />
+      <point x="-2.857142856882433E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.entity.DeliveryDriver" target="timf.voc.task.entity.auditEntity.BaseEntity" relationship="GENERALIZATION">
+      <point x="-69.9006978068212" y="-11.48353745320415" />
+      <point x="614.5069751645278" y="84.15310254495031" />
+      <point x="614.5069751645278" y="95.63663999815446" />
+      <point x="615.7798132714586" y="95.63663999815446" />
+      <point x="-37.41578825597071" y="14.131104222894237" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.Voc" target="timf.voc.task.entity.voc.aggregate.VocStatus" relationship="TO_ONE">
+      <point x="28.303994160085608" y="-11.237640055692168" />
+      <point x="848.3042798743713" y="117.14076304874254" />
+      <point x="848.4306304873404" y="117.14076304874254" />
+      <point x="848.4306304873404" y="198.3568445403075" />
+      <point x="898.4757796542754" y="198.3568445403075" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.service.VocService" target="timf.voc.task.service.ClaimService" relationship="TO_ONE">
+      <point x="-66.49952941176463" y="0.0" />
+      <point x="73.5" y="0.0" />
+    </edge>
+    <edge source="timf.voc.task.controller.DeliveryDriverController" target="timf.voc.task.service.TransportCompanyService" relationship="TO_ONE">
+      <point x="81.38992865220564" y="-13.886252943985937" />
+      <point x="1715.6692701718002" y="-278.9934504669902" />
+      <point x="1319.238832909566" y="-278.9934504669902" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.DeliveryDriverDto" target="timf.voc.task.dto.VocDto" relationship="TO_MANY">
+      <point x="-49.263287484588545" y="-0.41037584432785934" />
+      <point x="830.5759422502291" y="568.7309706659396" />
+      <point x="830.5759422502291" y="651.4032708943396" />
+      <point x="831.6787584755153" y="651.4032708943396" />
+      <point x="48.72954595178203" y="0.7558800689522513" />
+    </edge>
+    <edge source="timf.voc.task.entity.DeliveryDriver" target="timf.voc.task.entity.voc.Voc" relationship="TO_MANY">
+      <point x="63.693554190188934" y="14.0" />
+      <point x="700.9884584615276" y="82.81358272917723" />
+      <point x="807.3917707609561" y="82.81358272917723" />
+      <point x="807.3917707609561" y="97.42037434623333" />
+      <point x="820.0" y="97.42037434623333" />
+      <point x="-2.8571428569534874E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.Voc" target="timf.voc.task.entity.auditEntity.BaseEntity" relationship="GENERALIZATION">
+      <point x="-30.72105037671861" y="-15.091637897696842" />
+      <point x="788.7352012774714" y="80.54500210045762" />
+      <point x="788.7352012774714" y="50.97836177529973" />
+      <point x="711.5567749481065" y="50.97836177529973" />
+      <point x="711.5567749481065" y="-81.01398671385095" />
+      <point x="653.1953158131436" y="-81.01398671385095" />
+      <point x="-2.857142856882433E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.request.DeliveryDriverPenaltyRequest" target="timf.voc.task.entity.voc.aggregate.PenaltyApproval" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="1549.638771948159" y="194.8303767220085" />
+      <point x="1185.7793415195947" y="194.8303767220085" />
+      <point x="-64.82773899601511" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.VocResponse" target="timf.voc.task.dto.ClientCompanyDto" relationship="TO_ONE">
+      <point x="1.354035773765986" y="-11.356148470687458" />
+      <point x="807.3032482974993" y="470.9629702018362" />
+      <point x="805.9492125237333" y="470.9629702018362" />
+      <point x="805.9492125237333" y="543.0295798140365" />
+      <point x="4.285714287561859E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.VocResponse" target="timf.voc.task.entity.voc.aggregate.VocStatus" relationship="TO_ONE">
+      <point x="-15.0" y="-14.0" />
+      <point x="865.1150313690479" y="435.96177426334805" />
+      <point x="-33.36074828522749" y="14.806303411102476" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.Voc" target="timf.voc.task.entity.voc.aggregate.ClaimResponsibility" relationship="TO_ONE">
+      <point x="-26.040618366705758" y="-8.801519846276875" />
+      <point x="793.95966734758" y="111.47197908591207" />
+      <point x="793.3021206839435" y="111.47197908591207" />
+      <point x="793.3021206839435" y="208.8303767220085" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.VocDto" target="timf.voc.task.dto.ClientCompanyDto" relationship="TO_ONE">
+      <point x="10.958856322444603" y="-11.041344623611394" />
+      <point x="793.9080688461779" y="532.9908330722772" />
+      <point x="741.6579020826679" y="532.9908330722772" />
+      <point x="-83.79131044106543" y="-9.560933744179692" />
+    </edge>
+    <edge source="timf.voc.task.dto.VocDto" target="timf.voc.task.entity.voc.aggregate.VocStatus" relationship="TO_ONE">
+      <point x="46.62625610765542" y="-7.812908603691085" />
+      <point x="829.5754686313887" y="669.2176359599633" />
+      <point x="1349.1096246060913" y="669.2176359599633" />
+      <point x="1349.1096246060913" y="361.9299782680225" />
+      <point x="934.7355622873164" y="361.9299782680225" />
+      <point x="36.25978263304103" y="14.417560747608121" />
+    </edge>
+    <edge source="timf.voc.task.dto.ClientCompanyDto" target="timf.voc.task.dto.VocDto" relationship="TO_MANY">
+      <point x="-94.49957142857124" y="0.0" />
+      <point x="811.6988465607582" y="529.0295798140365" />
+      <point x="811.6988465607582" y="664.0085706602803" />
+      <point x="52.0" y="0.0" />
+    </edge>
+    <edge source="timf.voc.task.controller.ClaimController" target="timf.voc.task.service.ClaimService" relationship="TO_ONE">
+      <point x="82.0" y="0.0" />
+      <point x="73.5" y="0.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.VocResponse" target="timf.voc.task.entity.voc.aggregate.ClaimResponsibility" relationship="TO_ONE">
+      <point x="-33.62796348432994" y="2.994419316002052" />
+      <point x="775.087990119868" y="452.9561935793501" />
+      <point x="775.087990119868" y="228.2957382831388" />
+      <point x="774.7980869059351" y="228.2957382831388" />
+      <point x="50.45181690533798" y="12.093255448526065" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.VocResponse" target="timf.voc.task.dto.DeliveryDriverDto" relationship="TO_ONE">
+      <point x="72.69497054944827" y="11.281760892499392" />
+      <point x="873.1314490340803" y="461.24353515584744" />
+      <point x="873.1314490340803" y="489.4956770386923" />
+      <point x="935.162955613403" y="489.4956770386923" />
+      <point x="935.162955613403" y="555.2578930433713" />
+      <point x="-15.417941083658889" y="-13.883453466896185" />
+    </edge>
+    <edge source="timf.voc.task.service.VocService" target="timf.voc.task.service.NotificationService" relationship="TO_ONE">
+      <point x="-14.999529411764627" y="-14.0" />
+      <point x="881.205555212785" y="-314.465154787801" />
+      <point x="881.205555212785" y="-372.9381380873235" />
+      <point x="-340.10607701440154" y="6.939492342804215" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.aggregate.Penalty" target="timf.voc.task.entity.voc.aggregate.PenaltyApproval" relationship="TO_ONE">
+      <point x="36.75560596098376" y="9.47887957023255" />
+      <point x="1112.6657615555769" y="194.8303767220085" />
+      <point x="1250.6067948013242" y="194.8303767220085" />
+      <point x="-2.8571428572377044E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.service.TransportCompanyService" target="timf.voc.task.repository.DeliveryDriverRepository" relationship="TO_ONE">
+      <point x="109.37157271962337" y="0.18945257596192278" />
+      <point x="1233.969543478785" y="-278.8039978910283" />
+      <point x="63.78628415511878" y="-14.601021961607444" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.VocResponse" target="timf.voc.task.dto.PenaltyDto" relationship="TO_ONE">
+      <point x="45.226112751344886" y="-3.2092356840549883" />
+      <point x="1393.5337269001604" y="446.75253857929306" />
+      <point x="1393.5337269001604" y="704.7983976940304" />
+      <point x="1101.250272510582" y="704.7983976940304" />
+      <point x="-20.745222668019096" y="12.43970194024871" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.CompensationResponse" target="timf.voc.task.dto.VocDto" relationship="TO_ONE">
+      <point x="97.85040451799523" y="-2.6803338667953085" />
+      <point x="834.9492125237333" y="661.328236793485" />
+      <point x="52.0" y="0.0" />
+    </edge>
+    <edge source="timf.voc.task.entity.DeliveryDriver" target="timf.voc.task.entity.TransportCompany" relationship="TO_ONE">
+      <point x="-15.0" y="-14.0" />
+      <point x="622.2949042713386" y="95.63663999815446" />
+      <point x="318.501403547896" y="95.63663999815446" />
+      <point x="-68.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.PenaltyDto" target="timf.voc.task.dto.VocDto" relationship="TO_ONE">
+      <point x="65.5" y="0.0" />
+      <point x="1119.0202000913282" y="702.7531876680235" />
+      <point x="1119.0202000913282" y="706.7625768227107" />
+      <point x="1065.078940689796" y="706.7625768227107" />
+      <point x="1065.078940689796" y="704.5912405823988" />
+      <point x="818.0416701094285" y="704.5912405823988" />
+      <point x="818.0416701094285" y="653.045373991536" />
+      <point x="-42.99651680284933" y="-10.963196668744217" />
+    </edge>
+    <edge source="timf.voc.task.dto.VocDto" target="timf.voc.task.dto.PenaltyDto" relationship="TO_ONE">
+      <point x="15.0" y="-14.0" />
+      <point x="797.9492125237333" y="716.3023787985821" />
+      <point x="1062.7711963049976" y="716.3023787985821" />
+      <point x="1062.7711963049976" y="702.7531876680235" />
+      <point x="1187.495495178601" y="702.7531876680235" />
+      <point x="65.5" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.service.ClaimService" target="timf.voc.task.repository.ClaimRepository" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.DeliveryDriverMyPageResponse" target="timf.voc.task.dto.DeliveryDriverDto" relationship="TO_ONE">
+      <point x="-78.59962211664288" y="-10.071284528822389" />
+      <point x="1074.4458299309908" y="473.5595033879001" />
+      <point x="1071.3351187017656" y="473.5595033879001" />
+      <point x="1071.3351187017656" y="485.8175094602607" />
+      <point x="1161.4959237500298" y="485.8175094602607" />
+      <point x="15.000428571428756" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.VocDto" target="timf.voc.task.dto.DeliveryDriverDto" relationship="TO_ONE">
+      <point x="46.39845534571282" y="-9.934493760836517" />
+      <point x="1013.4085139370056" y="654.0740768994438" />
+      <point x="1013.4085139370056" y="583.1413465102675" />
+      <point x="15.000428571428756" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.service.VocService" target="timf.voc.task.service.ClientCompanyService" relationship="TO_ONE">
+      <point x="-15.0" y="14.0" />
+      <point x="817.046816147925" y="-309.36547685226947" />
+      <point x="1305.238832909566" y="-309.36547685226947" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.PenaltyDto" target="timf.voc.task.entity.voc.aggregate.PenaltyApproval" relationship="TO_ONE">
+      <point x="49.49819245053186" y="4.266581316410452" />
+      <point x="1171.4936876291329" y="715.831989162593" />
+      <point x="1477.688714534751" y="715.831989162593" />
+      <point x="1477.688714534751" y="322.62492520657645" />
+      <point x="1250.6067948013242" y="322.62492520657645" />
+      <point x="-2.8571428572377044E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.Voc" target="timf.voc.task.entity.DeliveryDriver" relationship="TO_ONE">
+      <point x="-30.000285714285695" y="14.0" />
+      <point x="790.0" y="102.63663999815446" />
+      <point x="675.1474521356693" y="102.63663999815446" />
+      <point x="675.1474521356693" y="95.63663999815446" />
+      <point x="-77.0" y="0.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.VocDto" target="timf.voc.task.entity.voc.aggregate.ClaimResponsibility" relationship="TO_ONE">
+      <point x="-29.488853207929765" y="-11.366864877457033" />
+      <point x="735.2968816279044" y="652.6417057828232" />
+      <point x="735.2968816279044" y="637.8945008508679" />
+      <point x="516.5724131972019" y="637.8945008508679" />
+      <point x="516.5724131972019" y="263.20952579926484" />
+      <point x="754.348848384245" y="263.20952579926484" />
+      <point x="30.002578383647915" y="12.140836205778015" />
+    </edge>
+    <edge source="timf.voc.task.service.VocService" target="timf.voc.task.repository.CompensationRepository" relationship="TO_ONE">
+      <point x="15.000470588235373" y="-14.0" />
+      <point x="847.0472867361605" y="-300.465154787801" />
+      <point x="778.0890217975078" y="-300.465154787801" />
+      <point x="778.0890217975078" y="-226.67848362448035" />
+      <point x="777.5617736266834" y="-226.67848362448035" />
+      <point x="99.2668693553448" y="7.955033816670493" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.Voc" target="timf.voc.task.entity.ClientCompany" relationship="TO_ONE">
+      <point x="-17.943291492542926" y="-15.483037616411366" />
+      <point x="802.0569942217428" y="-57.5838171608991" />
+      <point x="802.0569942217428" y="89.58377193469492" />
+      <point x="802.0569942217428" y="-68.52558858709968" />
+      <point x="-47.170509649230894" y="12.48839812675125" />
+    </edge>
+    <edge source="timf.voc.task.dto.response.DeliveryDriverMyPageResponse" target="timf.voc.task.dto.response.VocResponse" relationship="TO_MANY">
+      <point x="-133.33403454728523" y="-11.611252612876683" />
+      <point x="978.6701882331378" y="461.94825077502344" />
+      <point x="978.6701882331378" y="461.9617322547895" />
+      <point x="63.312117051567725" y="11.999957991441477" />
+    </edge>
+    <edge source="timf.voc.task.entity.ClientCompany" target="timf.voc.task.entity.voc.Voc" relationship="TO_MANY">
+      <point x="0.0" y="14.0" />
+      <point x="832.046816147925" y="-92.58735602588061" />
+      <point x="820.0002857142857" y="-92.58735602588061" />
+      <point x="820.0002857142857" y="82.81358272917723" />
+      <point x="820.0" y="82.81358272917723" />
+      <point x="-2.8571428569534874E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.Voc" target="timf.voc.task.entity.voc.aggregate.Compensation" relationship="TO_ONE">
+      <point x="-5.714618062472823" y="7.891503605415068" />
+      <point x="814.2856676518129" y="83.712075028169" />
+      <point x="841.2579085257477" y="83.712075028169" />
+      <point x="841.2579085257477" y="-12.678399080541794" />
+      <point x="966.3937029794986" y="-12.678399080541794" />
+      <point x="966.3937029794986" y="-10.64145105679438" />
+      <point x="-57.85364897993372" y="2.0369480237474136" />
+    </edge>
+    <edge source="timf.voc.task.entity.voc.aggregate.Compensation" target="timf.voc.task.entity.voc.Voc" relationship="TO_ONE">
+      <point x="-56.011353796418916" y="-7.2437033273681095" />
+      <point x="983.7228125324154" y="16.11621447372137" />
+      <point x="854.2999848256031" y="16.11621447372137" />
+      <point x="854.2999848256031" y="83.27241750111662" />
+      <point x="820.0" y="83.27241750111662" />
+      <point x="-2.8571428569534874E-4" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.service.VocService" target="timf.voc.task.repository.VocRepository" relationship="TO_ONE">
+      <point x="-59.0" y="-14.0" />
+      <point x="885.4371712242851" y="-314.465154787801" />
+      <point x="885.4371712242851" y="-217.7011050003482" />
+      <point x="886.122162281949" y="-217.7011050003482" />
+      <point x="-33.95938273687955" y="11.51439082176114" />
+    </edge>
+    <edge source="timf.voc.task.service.ClientCompanyService" target="timf.voc.task.repository.ClientCompanyRepository" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="1305.238832909566" y="-317.58939882702134" />
+      <point x="1642.2793415195947" y="-317.58939882702134" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.entity.TransportCompany" target="timf.voc.task.entity.auditEntity.BaseEntity" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="386.501403547896" y="95.63663999815446" />
+      <point x="412.4563974424147" y="95.63663999815446" />
+      <point x="412.4563974424147" y="-32.404440375631154" />
+      <point x="615.7798132714586" y="-32.404440375631154" />
+      <point x="615.7798132714586" y="-56.28540940320141" />
+      <point x="615.7798132714586" y="-68.37297684180783" />
+      <point x="-40.101914353438815" y="11.444978125426132" />
+    </edge>
+    <edge source="timf.voc.task.service.TransportCompanyService" target="timf.voc.task.repository.TransportCompanyRepository" relationship="TO_ONE">
+      <point x="21.952908869657563" y="-7.6922458520114105" />
+      <point x="1341.1917417792238" y="-256.2794012785787" />
+      <point x="1341.3436573617537" y="-256.2794012785787" />
+      <point x="1341.3436573617537" y="-190.14155487751748" />
+      <point x="1599.3482867361604" y="-190.14155487751748" />
+      <point x="127.5" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.dto.request.VocRequest" target="timf.voc.task.entity.voc.aggregate.ClaimResponsibility" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="531.8370310513151" y="194.8303767220085" />
+      <point x="724.3462700005971" y="194.8303767220085" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="timf.voc.task.controller.VocController" target="timf.voc.task.service.VocService" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="717.5" y="-374.3737249272567" />
+      <point x="772.3634425555106" y="-374.3737249272567" />
+      <point x="-59.6833735924144" y="-8.499774497947897" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.4627237115544884" showDependencies="true" x="822.7141527776537" y="297.5605888548579" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
