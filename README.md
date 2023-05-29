@@ -66,10 +66,19 @@
 
 ### 6. 시연 영상 및 테스트 코드 통과 현황 
 - 시연 영상
-  ![동영상 데모](docs/demo/voc-demo.mp4)
+  - 클레임, Voc, 배상 조회
+  ![views](docs/demo/views.gif)
+  - Voc 등록
+  ![views](docs/demo/voc-register.gif)
+  - 운송기사 마이페이지
+  ![views](docs/demo/driver-mypage.gif)
+  - Voc 등록시 알람
+  ![views](docs/demo/alert.gif)
 - 테스트 코드
   ![ERD](docs/demo/test1.png)
   ![ERD](docs/demo/test2.png)
+
+
 
 
 ### 7. 구동 방법
