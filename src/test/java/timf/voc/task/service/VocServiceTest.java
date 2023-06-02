@@ -71,7 +71,7 @@ class VocServiceTest {
 			.thenReturn(clientCompany);
 
 		willDoNothing().given(claimService).handleStatus(vocRequest, true);
-		willDoNothing().given(notificationService).notifyVocUpdate();
+		willDoNothing().given(notificationService).notifyNewVoc();
 
 		// when
 		vocService.registerVoc(vocRequest);

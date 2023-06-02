@@ -28,6 +28,7 @@ public class VocService {
 	private final TransportCompanyService transportCompanyService;
 	private final ClaimService claimService;
 	private final NotificationService notificationService;
+	private final KafkaProducerService kafkaProducerService;
 
 	private final VocRepository vocRepository;
 	private final CompensationRepository compensationRepository;
@@ -44,7 +45,9 @@ public class VocService {
 		 */
 		claimService.handleStatus(vocRequest, true);
 
-		notificationService.notifyVocUpdate();
+		notificationService.notifyNewVoc();
+		kafkaProducerService.notifyNewVoc();
+
 	}
 
 	public List<VocResponse> getVocs() {

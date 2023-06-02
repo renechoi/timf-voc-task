@@ -13,3 +13,25 @@ services:
       - ./database/config:/etc/mysql/conf.d
     ports:
       - "3300:3306"
+  timf-voc-task-kafka:
+    container_name: timf-voc-task-kafka
+    image: confluentinc/cp-kafka:6.1.0
+    hostname: kafka
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2182
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9093
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    ports:
+      - "9093:9093"
+    depends_on:
+      - timf-voc-task-zookeeper
+  timf-voc-task-zookeeper:
+    container_name: timf-voc-task-zookeeper
+    hostname: zookeeper
+    image: confluentinc/cp-zookeeper:6.1.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2182
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2182:2182"
+

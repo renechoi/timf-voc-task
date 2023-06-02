@@ -3,6 +3,9 @@ spring:
     active: local
 
 ---
+server:
+  port: 54380
+
 spring:
   config:
     activate:
@@ -21,6 +24,12 @@ spring:
 
     generate-ddl: true
 
+  kafka:
+    bootstrap-servers: localhost:9093
+    consumer:
+      group-id: voc-notification
+
   sql:
     init:
       mode: always
+

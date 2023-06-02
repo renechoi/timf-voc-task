@@ -38,7 +38,7 @@ public class NotificationService {
         return emitter;
     }
 
-    public void notifyVocUpdate() {
+    public void notifyNewVoc() {
         List<String> deadEmitters = new ArrayList<>();
         emittersMap.forEach((key, emitter) -> {
             try {
