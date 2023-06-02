@@ -54,7 +54,7 @@ class NotificationServiceTest {
 			})));
 
 		// when
-		notificationService.notifyVocUpdate();
+		notificationService.notifyNewVoc();
 
 		// then
 		// Verify the interactions with the emitters directly
