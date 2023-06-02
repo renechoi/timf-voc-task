@@ -92,4 +92,15 @@
   `docker-compose -f docker-compose-local.yml up`
 
 
-  
+  --- 
+
+## v.1.1.0 update note
+
+- 카프카를 이용한 비동기 메시지 큐 구현
+  - 의존성 구성 방식: `Docker-compose` 실행시 컨테이너에 `Kafka`와 `Zookeeper`를 함께 생성, `configure` 클래스에서 `bean` 등록
+  - 작동 방식:
+    - 새로운 `Voc`가 생성되면 `KafkaProducerService`의 `notifyNewVoc()`를 통해 등록 메시지가 `message queue`로 전달된다. `KafkaConsumerService`의 `handleNewVocNotification()` 메서드는 `new-voc` 토픽을 구독하여 새로운 `Voc` 정보를 받아본다.
+    - 기존 notification alert 방식인 Sse Emitter는 유지하며, 기존 코드의 큰 수정 삭제 없이 kafka 아키텍처를 구성
+  - 의의: 
+    - 현재 코드에서는 단순히 업데이트에 대한 `notification` 용도로 유의미한 데이터를 전달하지는 않는다.
+    - 추후 `app push` 기능을 추가할 수 있는 구성적 기반 마련한다.
