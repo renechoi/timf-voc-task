@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import timf.voc.task.config.util.TokenGenerator;
 import timf.voc.task.entity.auditEntity.BaseEntity;
 import timf.voc.task.entity.voc.Voc;
 
@@ -24,9 +25,13 @@ import timf.voc.task.entity.voc.Voc;
 @AllArgsConstructor
 public class ClientCompany extends BaseEntity {
 
+	private static final String CLIENT_COMPANY_PREFIX = "clientCompany_";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	private String clientCompanyToken;
 
 	@Column(nullable = false)
 	private String companyName;
@@ -49,5 +54,9 @@ public class ClientCompany extends BaseEntity {
 
 	public void updateCompensation(Long amount) {
 		this.compensationPayment += amount;
+	}
+
+	public void generateToken() {
+		this.clientCompanyToken = TokenGenerator.randomCharacterWithPrefix(CLIENT_COMPANY_PREFIX);
 	}
 }

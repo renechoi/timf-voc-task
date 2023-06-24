@@ -94,7 +94,9 @@
 
   --- 
 
-## v.1.1.0 update note
+## update note
+
+### v.1.1.0
 
 - 카프카를 이용한 비동기 메시지 큐 구현
   - 의존성 구성 방식: `Docker-compose` 실행시 컨테이너에 `Kafka`와 `Zookeeper`를 함께 생성, `configure` 클래스에서 `bean` 등록
@@ -103,4 +105,53 @@
     - 기존 notification alert 방식인 Sse Emitter는 유지하며, 기존 코드의 큰 수정 삭제 없이 kafka 아키텍처를 구성
   - 의의: 
     - 현재 코드에서는 단순히 업데이트에 대한 `notification` 용도로 유의미한 데이터를 전달하지는 않는다.
-    - 추후 `app push` 기능을 추가할 수 있는 구성적 기반 마련한다.
+    - 추후 `app push` 기능을 추가할 수 있는 구성적 기반을 마련하는 데 의의가 있다. 
+
+
+### v.1.2.0 
+- entity 식별 토큰 추가  
+  - 배경: 
+    - `DBMS`의 `Entity` 개념에서 고유한 식별자는 중요한 개념이다. `Entity`의 생명주기에서 형태와 내용은 바뀔 수 있지만 연속성을 유지하기 위해서는 식별자는 유일하고 고유해야 한다.  
+    - 일반적으로 `DBMS`는 `자동 증가 속성(AUTO_INCREMENT)`을 통해 PK 값을 증가시킬 수 있는 기능을 제공하며, JPA를 사용하는 프로젝트에서 `@GeneratedValue` 애노테이션을 PK 자동 생성 기능을 활용한다. 
+  - 기존 방식의 문제:
+    - 그러나 이렇게 생성된 pk로서의 id는 식별자라는 기능에는 충실하지만 부수적인 문제로서 보안, 비밀유지 측면에서 문제 소지 가능성을 갖는다.
+    - 예를 들어, 본 프로젝트에서는 운전기사가 마이페이지에 접속할 때 `DeliveryDriver`의 `id`에 대해 `GET` 요청을 통해 `my-page`에 접근하는 시나리오를 설정했다. 
+    - 이 경우 `drivery id`는 순번으로서 생성되기 때문에 임의의 숫자를 입력하여 타인의 `my-page`에 대한 접속 루트가 열리는 문제가 생긴다. 또한 경쟁사의 악의적인 시도로 특정 연속하는 순서를 요청해 당사의 운전기사 수를 유추할 수 있게 된다는 문제가 생긴다. 
+    - 이처럼 `DBMS`에 고유하게 존재하는 pk 값이 인터페이스 레벨까지 올라와 버리면 내부 구조에 대한 노출로 인한 문제점을 야기할 수 있다.
+    - 대체키의 사용
+      - 위의 문제점을 해결하는 방법으로 대체키를 도입한 것이 해당 버전 리팩토링의 주요 사항이다. 
+      - 세부 사항 
+        - 기존 `GET` 요청 `URI` -> `http://localhost:54380/delivery-driver/v1/my-page?id=1`
+        - 변경 `GET` 요청 `URI` -> `http://localhost:54380/delivery-driver/v2/my-page?token=ojH1C3ilyZb8Pmd`
+        - 토큰은 랜덤 알파벳으로 조합된다. UUID를 사용할 수도 있었지만 알파벳 생성을 위해 `apache commons`의 `lang 라이브러리`에서 제공하는 랜덤 문자열 생성 방식을 사용하였다. 
+        - 구현 코드는 다음과 같다. 
+        ```java
+        public class DeliveryDriver extends BaseEntity {
+
+           private static final String DELIVERY_DRIVER_PREFIX = "deliveryDriver_";
+
+           //...
+
+           private String deliveryDriverToken;
+
+           // ...
+
+           private void generateToken() {
+               this.deliveryDriverToken = TokenGenerator.randomCharacterWithPrefix(DELIVERY_DRIVER_PREFIX);
+           }
+        }
+        
+        public class TokenGenerator {
+           private static final int TOKEN_LENGTH = 30;
+
+           public static String randomCharacter(int length) {
+              return RandomStringUtils.randomAlphanumeric(length);
+           }
+
+           public static String randomCharacterWithPrefix(String prefix) {
+               return prefix + randomCharacter(TOKEN_LENGTH - prefix.length());
+           }
+        }
+       - 아직 구체적인 구현은 되어 있지 않지만 외부 접촉이 가능한 엔티티들에 대해서는 이와 같은 token 속성을 모두 갖도록 하였다.  
+
+---

@@ -36,11 +36,34 @@ public class TransportCompanyService {
 			.build();
 	}
 
+	public DeliveryDriverMyPageResponse getMyPage(String token) {
+		DeliveryDriver deliveryDriver = findByToken(identifyToken(token));
+
+		return DeliveryDriverMyPageResponse.builder()
+			.deliveryDriver(DeliveryDriverDto.from(deliveryDriver))
+			.vcos(searchDriverVocs(deliveryDriver))
+			.build();
+	}
+
+	private String identifyToken(String token) {
+		return "deliveryDriver_" + token;
+	}
+
 	private List<VocResponse> searchDriverVocs(DeliveryDriver deliveryDriver) {
 		return deliveryDriver.getVocList().stream().map(VocResponse::from).collect(Collectors.toList());
 	}
 
 	private DeliveryDriver findById(Long id){
 		return deliveryDriverRepository.findById(id).orElseThrow(DeliveryDriverNotFoundException::new);
+	}
+
+	private DeliveryDriver findByToken(String token){
+		return deliveryDriverRepository.findDeliveryDriverByDeliveryDriverToken(token).orElseThrow(DeliveryDriverNotFoundException::new);
+	}
+
+	@Transactional
+	public void registerDriver() {
+		DeliveryDriver deliveryDriver = new DeliveryDriver("테스트 드라이버", 10000L);
+		deliveryDriverRepository.save(deliveryDriver);
 	}
 }
