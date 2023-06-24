@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import timf.voc.task.config.util.TokenGenerator;
 import timf.voc.task.entity.auditEntity.BaseEntity;
 import timf.voc.task.entity.voc.Voc;
 
@@ -27,12 +28,16 @@ import timf.voc.task.entity.voc.Voc;
 @AllArgsConstructor
 public class DeliveryDriver extends BaseEntity {
 
+	private static final String DELIVERY_DRIVER_PREFIX = "deliveryDriver_";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private String deliveryDriverToken;
+
 	@Column(nullable = false)
-	private String Name;
+	private String name;
 
 	private Long salary;
 
@@ -46,6 +51,13 @@ public class DeliveryDriver extends BaseEntity {
 
 	@OneToMany(mappedBy = "deliveryDriver", cascade = CascadeType.ALL)
 	private List<Voc> vocList;
+
+	@Builder
+	public DeliveryDriver(String name, Long salary){
+		generateToken();
+		this.name = name;
+		this.salary = salary;
+	}
 
 	public DeliveryDriver mappedWith(Voc voc) {
 		this.vocList.add(voc);
@@ -65,6 +77,10 @@ public class DeliveryDriver extends BaseEntity {
 		this.salary -= this.pendingPenaltyAmount;
 		this.pendingPenaltyAmount = 0L;
 		return salary;
+	}
+
+	private void generateToken() {
+		this.deliveryDriverToken = TokenGenerator.randomCharacterWithPrefix(DELIVERY_DRIVER_PREFIX);
 	}
 }
 

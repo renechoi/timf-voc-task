@@ -18,7 +18,7 @@ import timf.voc.task.entity.DeliveryDriver;
 public class DeliveryDriverDto {
 
 	private Long id;
-	private String Name;
+	private String name;
 	private Long salary;
 	private Long pendingPenaltyAmount;
 	private boolean isPenaltyDeducted;
