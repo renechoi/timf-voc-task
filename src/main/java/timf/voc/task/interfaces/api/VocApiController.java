@@ -10,18 +10,18 @@
 //
 // import lombok.RequiredArgsConstructor;
 // import timf.voc.task.dto.api.ResponseDTO;
-// import timf.voc.task.dto.request.DeliveryDriverPenaltyRequest;
-// import timf.voc.task.dto.request.VocRequest;
+// import timf.voc.task.interfaces.deliverydriver.DeliveryDriverVocProcessRequest;
+// import timf.voc.task.interfaces.voc.VocRequest;
 // import timf.voc.task.dto.response.CompensationResponse;
-// import timf.voc.task.dto.response.VocResponse;
-// import timf.voc.task.service.VocService;
+// import timf.voc.task.interfaces.voc.VocResponse;
+// import timf.voc.task.domain.voc.SimpleVocService;
 //
 // @RestController
 // @RequestMapping("/api/voc")
 // @RequiredArgsConstructor
 // public class VocApiController extends ApiController {
 //
-// 	private final VocService vocService;
+// 	private final SimpleVocService vocService;
 //
 // 	@PostMapping("/register")
 // 	public ResponseDTO<Void> registerVoc(@RequestBody VocRequest vocRequest) {
@@ -41,7 +41,7 @@
 //
 // 	@PostMapping("/penalty/driver/approval")
 // 	public ResponseDTO<Void> handleDriverPenaltyApproval(
-// 		@RequestBody DeliveryDriverPenaltyRequest deliveryDriverPenaltyRequest) {
+// 		@RequestBody DeliveryDriverVocProcessRequest deliveryDriverPenaltyRequest) {
 // 		vocService.handleDriverPenalty(deliveryDriverPenaltyRequest);
 // 		return ok();
 // 	}

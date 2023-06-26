@@ -1,9 +1,4 @@
-package timf.voc.task.dto;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package timf.voc.task.interfaces.transportcompany;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import timf.voc.task.config.converter.EntityAndDtoConverter;
-import timf.voc.task.entity.TransportCompany;
+import timf.voc.task.domain.transportcompany.aggregate.TransportCompany;
 
 @Getter
 @Setter

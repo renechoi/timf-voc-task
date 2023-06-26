@@ -1,4 +1,4 @@
-package timf.voc.task.controller;
+package timf.voc.task.interfaces.transportcompany;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import lombok.RequiredArgsConstructor;
-import timf.voc.task.service.NotificationService;
+import timf.voc.task.domain.notification.NotificationService;
 
 @Controller
 @RequiredArgsConstructor

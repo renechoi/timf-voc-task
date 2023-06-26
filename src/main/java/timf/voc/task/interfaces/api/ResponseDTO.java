@@ -1,4 +1,4 @@
-// package timf.voc.task.dto.api;
+package timf.voc.task.interfaces.api;// package timf.voc.task.dto.api;
 //
 // import java.io.Serializable;
 //

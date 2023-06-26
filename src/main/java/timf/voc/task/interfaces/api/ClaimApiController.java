@@ -7,14 +7,14 @@
 //
 // import lombok.RequiredArgsConstructor;
 // import timf.voc.task.dto.api.ResponseDTO;
-// import timf.voc.task.dto.response.ClaimResponse;
-// import timf.voc.task.service.ClaimService;
+// import timf.voc.task.interfaces.claim.ClaimResponse;
+// import timf.voc.task.domain.claim.SimpleClaimService;
 //
 // @RestController
 // @RequiredArgsConstructor
 // public class ClaimApiController extends ApiController {
 //
-// 	private final ClaimService claimService;
+// 	private final SimpleClaimService claimService;
 //
 // 	@GetMapping("/claims")
 // 	public ResponseDTO<List<ClaimResponse>> getClaims() {

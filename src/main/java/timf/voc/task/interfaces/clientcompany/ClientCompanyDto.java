@@ -1,4 +1,4 @@
-package timf.voc.task.dto;
+package timf.voc.task.interfaces.clientcompany;
 
 import java.util.List;
 
@@ -8,7 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import timf.voc.task.config.converter.EntityAndDtoConverter;
-import timf.voc.task.entity.ClientCompany;
+import timf.voc.task.domain.clientcompany.ClientCompany;
+import timf.voc.task.interfaces.voc.VocDto;
 
 @Getter
 @Setter
