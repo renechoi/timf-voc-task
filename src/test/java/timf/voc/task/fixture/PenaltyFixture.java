@@ -1,8 +1,7 @@
 package timf.voc.task.fixture;
 
-import timf.voc.task.entity.voc.aggregate.Penalty;
-import timf.voc.task.entity.voc.Voc;
-import timf.voc.task.entity.voc.aggregate.PenaltyApproval;
+import timf.voc.task.domain.voc.aggregate.Penalty;
+import timf.voc.task.domain.voc.aggregate.Voc;
 
 public class PenaltyFixture {
 

@@ -3,8 +3,7 @@ package timf.voc.task.fixture;
 import java.util.Arrays;
 import java.util.List;
 
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.entity.Claim;
+import timf.voc.task.domain.claim.Claim;
 
 public class ClaimFixture {
 

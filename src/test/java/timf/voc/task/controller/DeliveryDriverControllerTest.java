@@ -15,17 +15,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import timf.voc.task.dto.DeliveryDriverDto;
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.dto.response.DeliveryDriverMyPageResponse;
-import timf.voc.task.dto.response.VocResponse;
-import timf.voc.task.entity.DeliveryDriver;
-import timf.voc.task.entity.voc.Voc;
+import timf.voc.task.interfaces.transportcompany.DeliveryDriverDto;
+import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
+import timf.voc.task.domain.voc.aggregate.Voc;
 import timf.voc.task.fixture.DeliveryDriverFixture;
 import timf.voc.task.fixture.TransportCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
 import timf.voc.task.fixture.VocRequestFixture;
-import timf.voc.task.service.TransportCompanyService;
+import timf.voc.task.domain.transportcompany.SimpleTransportCompanyService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -34,7 +31,7 @@ class DeliveryDriverControllerTest {
 	private final MockMvc mockMvc;
 
 	@MockBean
-	private TransportCompanyService transportCompanyService;
+	private SimpleTransportCompanyService simpleTransportCompanyService;
 
 	@Autowired
 	DeliveryDriverControllerTest(MockMvc mockMvc) {
@@ -52,7 +49,7 @@ class DeliveryDriverControllerTest {
 			.vcos(vocs.stream().map(VocResponse::from).collect(Collectors.toList()))
 			.build();
 
-		given(transportCompanyService.getMyPage(driverId)).willReturn(expectedResponse);
+		given(simpleTransportCompanyService.getMyPage(driverId)).willReturn(expectedResponse);
 
 		// when
 		mockMvc.perform(get("/delivery-driver/my-page").param("id", String.valueOf(driverId)))
@@ -61,7 +58,7 @@ class DeliveryDriverControllerTest {
 			.andExpect(model().attribute("myPage", expectedResponse));
 
 		// then
-		verify(transportCompanyService).getMyPage(driverId);
+		verify(simpleTransportCompanyService).getMyPage(driverId);
 	}
 
 	@NotNull

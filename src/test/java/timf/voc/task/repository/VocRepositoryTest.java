@@ -8,21 +8,22 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.entity.ClientCompany;
-import timf.voc.task.entity.DeliveryDriver;
-import timf.voc.task.entity.voc.Voc;
+import timf.voc.task.domain.clientcompany.ClientCompany;
+import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
+import timf.voc.task.domain.voc.aggregate.Voc;
 import timf.voc.task.fixture.ClientCompanyFixture;
 import timf.voc.task.fixture.DeliveryDriverFixture;
 import timf.voc.task.fixture.TransportCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
 import timf.voc.task.fixture.VocRequestFixture;
+import timf.voc.task.infrastructure.voc.VocRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class VocRepositoryTest {
 
-	@Autowired VocRepository vocRepository;
+	@Autowired
+	VocRepository vocRepository;
 
 	@Test
 	@DirtiesContext

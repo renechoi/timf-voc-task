@@ -8,10 +8,11 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import timf.voc.task.entity.DeliveryDriver;
+import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
 import timf.voc.task.fixture.DeliveryDriverFixture;
 import timf.voc.task.fixture.TransportCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
+import timf.voc.task.infrastructure.transportcompany.DeliveryDriverRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

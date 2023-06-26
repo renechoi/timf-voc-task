@@ -8,14 +8,16 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import timf.voc.task.entity.TransportCompany;
+import timf.voc.task.domain.transportcompany.aggregate.TransportCompany;
 import timf.voc.task.fixture.TransportCompanyFixture;
+import timf.voc.task.infrastructure.transportcompany.TransportCompanyRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class TransportCompanyRepositoryTest {
 
-	@Autowired TransportCompanyRepository transportCompanyRepository;
+	@Autowired
+	TransportCompanyRepository transportCompanyRepository;
 
 	@Test
 	@DirtiesContext

@@ -1,8 +1,5 @@
 package timf.voc.task.fixture;
 
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.entity.voc.aggregate.ClaimResponsibility;
-
 public class VocRequestFixture {
 
 	public static VocRequest create(String description) {

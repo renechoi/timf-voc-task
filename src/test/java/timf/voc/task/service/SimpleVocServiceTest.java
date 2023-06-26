@@ -14,15 +14,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import timf.voc.task.dto.request.DeliveryDriverPenaltyRequest;
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.dto.response.CompensationResponse;
-import timf.voc.task.dto.response.VocResponse;
-import timf.voc.task.entity.ClientCompany;
-import timf.voc.task.entity.DeliveryDriver;
-import timf.voc.task.entity.voc.Voc;
-import timf.voc.task.entity.voc.aggregate.Compensation;
-import timf.voc.task.entity.voc.aggregate.PenaltyApproval;
+import timf.voc.task.domain.claim.SimpleClaimService;
+import timf.voc.task.domain.clientcompany.ClientCompany;
+import timf.voc.task.domain.clientcompany.SimpleClientCompanyService;
+import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
+import timf.voc.task.domain.notification.NotificationService;
+import timf.voc.task.domain.transportcompany.SimpleTransportCompanyService;
+import timf.voc.task.domain.voc.SimpleVocService;
+import timf.voc.task.domain.voc.aggregate.Voc;
+import timf.voc.task.domain.voc.aggregate.Compensation;
 import timf.voc.task.fixture.ClientCompanyFixture;
 import timf.voc.task.fixture.CompensationFixture;
 import timf.voc.task.fixture.DeliveryDriverFixture;
@@ -30,23 +30,23 @@ import timf.voc.task.fixture.DeliveryDriverPenaltyRequestFixture;
 import timf.voc.task.fixture.TransportCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
 import timf.voc.task.fixture.VocRequestFixture;
-import timf.voc.task.repository.CompensationRepository;
-import timf.voc.task.repository.VocRepository;
+import timf.voc.task.infrastructure.voc.CompensationRepository;
+import timf.voc.task.infrastructure.voc.VocRepository;
 
 @ExtendWith(MockitoExtension.class)
-class VocServiceTest {
+class SimpleVocServiceTest {
 
 	@InjectMocks
-	VocService vocService;
+	SimpleVocService simpleVocService;
 
 	@Mock
-	ClientCompanyService clientCompanyService;
+	SimpleClientCompanyService simpleClientCompanyService;
 
 	@Mock
-	TransportCompanyService transportCompanyService;
+	SimpleTransportCompanyService simpleTransportCompanyService;
 
 	@Mock
-	ClaimService claimService;
+	SimpleClaimService simpleClaimService;
 
 	@Mock
 	NotificationService notificationService;
@@ -63,18 +63,18 @@ class VocServiceTest {
 		VocRequest vocRequest = createVocRequest();
 
 		DeliveryDriver deliveryDriver = createDeliveryDriver(vocRequest);
-		when(transportCompanyService.searchDeliveryDriverEntity(vocRequest.getDeliveryDriverId()))
+		when(simpleTransportCompanyService.retrieveDeliveryDriver(vocRequest.getDeliveryDriverId()))
 			.thenReturn(deliveryDriver);
 
 		ClientCompany clientCompany = createClientCompany(vocRequest);
-		when(clientCompanyService.searchClientCompanyEntity(vocRequest.getClientCompanyId()))
+		when(simpleClientCompanyService.retrieveClientCompany(vocRequest.getClientCompanyId()))
 			.thenReturn(clientCompany);
 
-		willDoNothing().given(claimService).handleStatus(vocRequest, true);
+		willDoNothing().given(simpleClaimService).updateStatusTrue(vocRequest, true);
 		willDoNothing().given(notificationService).notifyNewVoc();
 
 		// when
-		vocService.registerVoc(vocRequest);
+		simpleVocService.registerVoc(vocRequest);
 
 		// then
 		ArgumentCaptor<Voc> vocCaptor = ArgumentCaptor.forClass(Voc.class);
@@ -103,7 +103,7 @@ class VocServiceTest {
 		when(vocRepository.findById(deliveryDriverPenaltyRequest.getVocId())).thenReturn(Optional.of(voc));
 
 		// when
-		vocService.handleDriverPenalty(deliveryDriverPenaltyRequest);
+		simpleVocService.handleDriverApproval(deliveryDriverPenaltyRequest);
 
 		// then
 		verify(vocRepository).findById(deliveryDriverPenaltyRequest.getVocId());
@@ -125,7 +125,7 @@ class VocServiceTest {
 		when(vocRepository.findById(deliveryDriverPenaltyRequest.getVocId())).thenReturn(Optional.of(voc));
 
 		// when
-		vocService.handleDriverPenalty(deliveryDriverPenaltyRequest);
+		simpleVocService.handleDriverApproval(deliveryDriverPenaltyRequest);
 
 		// then
 		verify(vocRepository).findById(deliveryDriverPenaltyRequest.getVocId());
@@ -140,7 +140,7 @@ class VocServiceTest {
 		when(vocRepository.findAll()).thenReturn(vocs);
 
 		// when
-		List<VocResponse> vocResponses = vocService.getVocs();
+		List<VocResponse> vocResponses = simpleVocService.retrieveVocs();
 
 		// then
 		assertEquals(vocs.size(), vocResponses.size());
@@ -154,7 +154,7 @@ class VocServiceTest {
 		when(compensationRepository.findAll()).thenReturn(compensations);
 
 		// when
-		List<CompensationResponse> compensationResponses = vocService.getCompensations();
+		List<CompensationResponse> compensationResponses = simpleVocService.retrieveCompensations();
 
 		// then
 		assertEquals(compensations.size(), compensationResponses.size());

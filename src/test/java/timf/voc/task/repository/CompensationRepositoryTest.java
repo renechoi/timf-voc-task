@@ -8,9 +8,10 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import timf.voc.task.entity.voc.aggregate.Compensation;
+import timf.voc.task.domain.voc.aggregate.Compensation;
 import timf.voc.task.fixture.CompensationFixture;
 import timf.voc.task.fixture.VocFixture;
+import timf.voc.task.infrastructure.voc.CompensationRepository;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

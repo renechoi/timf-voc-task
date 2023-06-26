@@ -13,22 +13,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.dto.response.DeliveryDriverMyPageResponse;
-import timf.voc.task.entity.DeliveryDriver;
-import timf.voc.task.entity.voc.Voc;
-import timf.voc.task.exception.DeliveryDriverNotFoundException;
+import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
+import timf.voc.task.domain.transportcompany.SimpleTransportCompanyService;
+import timf.voc.task.domain.voc.aggregate.Voc;
+import timf.voc.task.config.exception.DeliveryDriverNotFoundException;
 import timf.voc.task.fixture.DeliveryDriverFixture;
 import timf.voc.task.fixture.TransportCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
 import timf.voc.task.fixture.VocRequestFixture;
-import timf.voc.task.repository.DeliveryDriverRepository;
+import timf.voc.task.infrastructure.transportcompany.DeliveryDriverRepository;
 
 @ExtendWith(MockitoExtension.class)
-class TransportCompanyServiceTest {
+class SimpleTransportCompanyServiceTest {
 
 	@InjectMocks
-	TransportCompanyService transportCompanyService;
+	SimpleTransportCompanyService simpleTransportCompanyService;
 
 	@Mock
 	DeliveryDriverRepository deliveryDriverRepository;
@@ -41,7 +40,7 @@ class TransportCompanyServiceTest {
 		when(deliveryDriverRepository.findById(driverId)).thenReturn(Optional.of(deliveryDriver));
 
 		// when
-		DeliveryDriver result = transportCompanyService.searchDeliveryDriverEntity(driverId);
+		DeliveryDriver result = simpleTransportCompanyService.retrieveDeliveryDriver(driverId);
 
 		// then
 		verify(deliveryDriverRepository).findById(driverId);
@@ -56,7 +55,7 @@ class TransportCompanyServiceTest {
 
 		// when, then
 		assertThrows(DeliveryDriverNotFoundException.class,
-			() -> transportCompanyService.searchDeliveryDriverEntity(driverId));
+			() -> simpleTransportCompanyService.retrieveDeliveryDriver(driverId));
 		verify(deliveryDriverRepository).findById(driverId);
 	}
 
@@ -70,7 +69,7 @@ class TransportCompanyServiceTest {
 		when(deliveryDriverRepository.findById(driverId)).thenReturn(Optional.of(deliveryDriver));
 
 		// when
-		DeliveryDriverMyPageResponse result = transportCompanyService.getMyPage(driverId);
+		DeliveryDriverMyPageResponse result = simpleTransportCompanyService.getMyPage(driverId);
 
 		// then
 		verify(deliveryDriverRepository).findById(driverId);

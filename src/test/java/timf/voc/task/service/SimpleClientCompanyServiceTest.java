@@ -12,19 +12,19 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.entity.ClientCompany;
-import timf.voc.task.exception.ClientCompanyNotFoundException;
+import timf.voc.task.domain.clientcompany.ClientCompany;
+import timf.voc.task.config.exception.ClientCompanyNotFoundException;
+import timf.voc.task.domain.clientcompany.SimpleClientCompanyService;
 import timf.voc.task.fixture.ClientCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
 import timf.voc.task.fixture.VocRequestFixture;
-import timf.voc.task.repository.ClientCompanyRepository;
+import timf.voc.task.infrastructure.clientcompany.ClientCompanyRepository;
 
 @ExtendWith(MockitoExtension.class)
-class ClientCompanyServiceTest {
+class SimpleClientCompanyServiceTest {
 
 	@InjectMocks
-	ClientCompanyService clientCompanyService;
+	SimpleClientCompanyService simpleClientCompanyService;
 
 	@Mock
 	ClientCompanyRepository clientCompanyRepository;
@@ -37,7 +37,7 @@ class ClientCompanyServiceTest {
 		when(clientCompanyRepository.findById(companyId)).thenReturn(Optional.of(clientCompany));
 
 		// when
-		ClientCompany result = clientCompanyService.searchClientCompanyEntity(companyId);
+		ClientCompany result = simpleClientCompanyService.retrieveClientCompany(companyId);
 
 		// then
 		verify(clientCompanyRepository).findById(companyId);
@@ -52,7 +52,7 @@ class ClientCompanyServiceTest {
 
 		// when, then
 		assertThrows(ClientCompanyNotFoundException.class,
-			() -> clientCompanyService.searchClientCompanyEntity(companyId));
+			() -> simpleClientCompanyService.retrieveClientCompany(companyId));
 		verify(clientCompanyRepository).findById(companyId);
 	}
 

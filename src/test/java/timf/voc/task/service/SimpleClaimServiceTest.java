@@ -14,31 +14,30 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import timf.voc.task.dto.request.ClaimRequest;
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.dto.response.ClaimResponse;
-import timf.voc.task.entity.Claim;
-import timf.voc.task.exception.ClaimNotFoundException;
+import timf.voc.task.domain.claim.Claim;
+import timf.voc.task.config.exception.ClaimNotFoundException;
+import timf.voc.task.domain.claim.SimpleClaimService;
 import timf.voc.task.fixture.ClaimFixture;
 import timf.voc.task.fixture.VocRequestFixture;
-import timf.voc.task.repository.ClaimRepository;
+import timf.voc.task.interfaces.claim.ClaimDto;
+import timf.voc.task.infrastructure.claim.ClaimRepository;
 
 
 @ExtendWith(MockitoExtension.class)
-class ClaimServiceTest {
+class SimpleClaimServiceTest {
 
 	@InjectMocks
-	ClaimService claimService;
+	SimpleClaimService simpleClaimService;
 
 	@Mock ClaimRepository claimRepository;
 
 	@Test
 	void shouldRegisterClaim_Success() {
 		// given
-		ClaimRequest claimRequest = createClaimRequest();
+		ClaimDto.ClaimRequest claimRequest = createClaimRequest();
 
 		// when
-		claimService.registerClaim(claimRequest);
+		simpleClaimService.registerClaim(claimRequest);
 
 		// then
 		ArgumentCaptor<Claim> claimCaptor = ArgumentCaptor.forClass(Claim.class);
@@ -55,7 +54,7 @@ class ClaimServiceTest {
 		when(claimRepository.findAll()).thenReturn(claims);
 
 		// when
-		List<ClaimResponse> claimResponses = claimService.getClaims();
+		List<ClaimResponse> claimResponses = simpleClaimService.retrieveClaims();
 
 		// then
 		assertEquals(claims.size(), claimResponses.size());
@@ -69,7 +68,7 @@ class ClaimServiceTest {
 		when(claimRepository.findById(vocRequest.getClaimId())).thenReturn(Optional.of(claim));
 
 		// when
-		claimService.handleStatus(vocRequest, true);
+		simpleClaimService.updateStatusTrue(vocRequest, true);
 
 		// then
 		verify(claimRepository).findById(vocRequest.getClaimId());
@@ -84,7 +83,7 @@ class ClaimServiceTest {
 		when(claimRepository.findById(vocRequest.getClaimId())).thenReturn(Optional.of(claim));
 
 		// when
-		claimService.handleStatus(vocRequest, false);
+		simpleClaimService.updateStatusTrue(vocRequest, false);
 
 		// then
 		verify(claimRepository).findById(vocRequest.getClaimId());
@@ -97,7 +96,7 @@ class ClaimServiceTest {
 		VocRequest vocRequest = createVocRequest();
 
 		// then
-		assertThrows(ClaimNotFoundException.class, () -> claimService.handleStatus(vocRequest, true));
+		assertThrows(ClaimNotFoundException.class, () -> simpleClaimService.updateStatusTrue(vocRequest, true));
 	}
 
 	@NotNull

@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import timf.voc.task.dto.request.VocRequest;
-import timf.voc.task.entity.ClientCompany;
-import timf.voc.task.entity.DeliveryDriver;
-import timf.voc.task.entity.voc.Voc;
+import timf.voc.task.domain.clientcompany.ClientCompany;
+import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
+import timf.voc.task.domain.voc.aggregate.Voc;
 
 public class VocFixture {
 
