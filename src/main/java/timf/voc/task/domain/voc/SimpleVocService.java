@@ -22,15 +22,15 @@ import timf.voc.task.infrastructure.voc.VocRepository;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class SimpleVocService {
-
-	private final VocRepository vocRepository;
+public class SimpleVocService implements VocService {
 
 	private final ClientCompanyReader clientCompanyReader;
 	private final DeliveryDriverReader deliveryDriverReader;
 	private final VocReader vocReader;
 	private final CompensationReader compensationReader;
+	private final VocSeriesFactory vocSeriesFactory;
 
+	@Override
 	@Transactional
 	public void registerVoc(VocRegisterRequest request) {
 		ClientCompany clientCompany = clientCompanyReader.get(request.getClientCompanyId()).orElseThrow(
@@ -39,17 +39,20 @@ public class SimpleVocService {
 		DeliveryDriver deliveryDriver =deliveryDriverReader.get(request.getDeliveryDriverId()).orElseThrow(
 			DeliveryDriverNotFoundException::new);
 
-		vocRepository.save(Voc.createVoc(request, clientCompany, deliveryDriver));
+		vocSeriesFactory.save(request, clientCompany, deliveryDriver);
 	}
 
+	@Override
 	public List<VocInfo> retrieveVocs() {
 		return vocReader.get().stream().map(VocInfo::from).collect(Collectors.toList());
 	}
 
+	@Override
 	public List<CompensationInfo> retrieveCompensations() {
 		return compensationReader.get().stream().map(CompensationInfo::from).collect(Collectors.toList());
 	}
 
+	@Override
 	@Transactional
 	public void handleDriverApproval(VocProcessRequest request) {
 		Voc voc = vocReader.get(request.getVocId()).orElseThrow(VocNotFoundException::new);

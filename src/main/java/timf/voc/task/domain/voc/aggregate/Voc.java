@@ -82,26 +82,8 @@ public class Voc extends BaseEntity {
 		this.status = judgeStatus(vocRequest);
 	}
 
-	public static Voc createVoc(VocCommand.VocRegisterRequest vocRequest, ClientCompany clientCompany, DeliveryDriver deliveryDriver) {
-		Compensation compensation = createCompensation(vocRequest);
-		Penalty penalty = createPenalty(vocRequest);
-
+	public static Voc of(VocCommand.VocRegisterRequest vocRequest, ClientCompany clientCompany, DeliveryDriver deliveryDriver, Compensation compensation,Penalty penalty ) {
 		return new Voc(vocRequest, deliveryDriver, clientCompany, compensation, penalty);
-	}
-
-	private static Penalty createPenalty(VocCommand.VocRegisterRequest vocRequest) {
-		if (vocRequest.isCompensationRequested()) {
-			return Penalty.of(vocRequest.getPenaltyDescription(), vocRequest.getPenaltyAmount());
-		}
-		return null;
-	}
-
-	private static Compensation createCompensation(VocCommand.VocRegisterRequest vocRequest) {
-		if (vocRequest.isCompensationRequested()) {
-			return Compensation.of(vocRequest.getCompensationDescription(), vocRequest.getCompensationAmount());
-		}
-
-		return null;
 	}
 
 	private Compensation mapWith(Compensation compensation) {

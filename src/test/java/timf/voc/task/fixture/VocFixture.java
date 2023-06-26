@@ -13,7 +13,7 @@ public class VocFixture {
 
 	public static Voc create(VocRequest vocRequest, DeliveryDriver deliveryDriver, ClientCompany clientCompany) {
 
-		Voc voc = Voc.createVoc(vocRequest, clientCompany, deliveryDriver);
+		Voc voc = Voc.of(vocRequest, clientCompany, deliveryDriver);
 		voc.setCreatedAt(LocalDateTime.now());
 		return voc;
 	}

@@ -186,7 +186,7 @@ class SimpleVocServiceTest {
 
 	@NotNull
 	private Voc createVoc(ClientCompany clientCompany, DeliveryDriver deliveryDriver) {
-		return Voc.createVoc(createVocRequest(), clientCompany, deliveryDriver);
+		return Voc.of(createVocRequest(), clientCompany, deliveryDriver);
 	}
 
 	private List<Voc> createVocs() {
