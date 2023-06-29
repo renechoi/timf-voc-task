@@ -11,13 +11,12 @@ import timf.voc.task.config.exception.ClientCompanyNotFoundException;
 import timf.voc.task.config.exception.DeliveryDriverNotFoundException;
 import timf.voc.task.domain.clientcompany.ClientCompanyReader;
 import timf.voc.task.domain.transportcompany.DeliveryDriverReader;
-import timf.voc.task.domain.voc.VocCommand.VocProcessRequest;
+import timf.voc.task.domain.voc.VocCommand.VocReigsterRequest;
 import timf.voc.task.domain.voc.VocCommand.VocRegisterRequest;
 import timf.voc.task.domain.clientcompany.ClientCompany;
 import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
 import timf.voc.task.domain.voc.aggregate.Voc;
 import timf.voc.task.config.exception.VocNotFoundException;
-import timf.voc.task.infrastructure.voc.VocRepository;
 
 @Service
 @Transactional(readOnly = true)
@@ -54,7 +53,7 @@ public class SimpleVocService implements VocService {
 
 	@Override
 	@Transactional
-	public void handleDriverApproval(VocProcessRequest request) {
+	public void handleDriverApproval(VocReigsterRequest request) {
 		Voc voc = vocReader.get(request.getVocId()).orElseThrow(VocNotFoundException::new);
 		voc.updatePenaltyStatusApproved();
 		voc.imposePenalty();

@@ -4,7 +4,7 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-import timf.voc.task.domain.voc.VocCommand.VocProcessRequest;
+import timf.voc.task.domain.voc.VocCommand.VocReigsterRequest;
 import timf.voc.task.domain.voc.VocCommand.VocRegisterRequest;
 import timf.voc.task.interfaces.transportcompany.DeliveryDriverDto.DeliveryDriverVocProcessRequest;
 import timf.voc.task.interfaces.voc.VocDto.VocRequest;
@@ -18,5 +18,5 @@ public interface VocDtoConverter {
 
 	VocRegisterRequest convertToCommand(VocRequest request);
 
-	VocProcessRequest convertToCommand(DeliveryDriverVocProcessRequest request);
+	VocReigsterRequest convertToCommand(DeliveryDriverVocProcessRequest request);
 }

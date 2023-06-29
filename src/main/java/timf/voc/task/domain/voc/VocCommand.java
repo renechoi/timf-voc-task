@@ -28,7 +28,7 @@ public class VocCommand {
 	@Data
 	@Builder
 	@NoArgsConstructor
-	public static class VocProcessRequest {
+	public static class VocReigsterRequest {
 		private Long deliveryDriverId;
 		private Long vocId;
 		private PenaltyApproval penaltyApproval;

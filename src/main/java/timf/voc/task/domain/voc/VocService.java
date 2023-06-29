@@ -2,8 +2,6 @@ package timf.voc.task.domain.voc;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 public interface VocService {
 	void registerVoc(VocCommand.VocRegisterRequest request);
 
@@ -11,5 +9,5 @@ public interface VocService {
 
 	List<CompensationInfo> retrieveCompensations();
 
-	void handleDriverApproval(VocCommand.VocProcessRequest request);
+	void handleDriverApproval(VocCommand.VocReigsterRequest request);
 }
