@@ -4,11 +4,17 @@ import static timf.voc.task.config.converter.EntityAndDtoConverter.*;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
 import timf.voc.task.domain.voc.VocInfo;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DeliveryDriverInfo {
 	private Long id;
 	private String deliveryDriverToken;

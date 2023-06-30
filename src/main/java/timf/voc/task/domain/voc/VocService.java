@@ -9,5 +9,5 @@ public interface VocService {
 
 	List<CompensationInfo> retrieveCompensations();
 
-	void handleDriverApproval(VocCommand.VocReigsterRequest request);
+	void handleDriverApproval(VocCommand.VocProcessRequest request);
 }

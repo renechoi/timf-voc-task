@@ -1,5 +1,6 @@
 package timf.voc.task.domain.voc;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ public class VocCommand {
 
 	@Data
 	@Builder
+	@AllArgsConstructor
 	public static class VocRegisterRequest{
 		private Long claimId;
 		private String description;
@@ -18,7 +20,9 @@ public class VocCommand {
 		private boolean compensationRequested;
 		private ClaimResponsibility claimResponsibility;
 		private Long deliveryDriverId;
+		private String deliveryDriverToken;
 		private Long clientCompanyId;
+		private String clientCompanyToken;
 		private Long compensationAmount;
 		private Long penaltyAmount;
 		private String compensationDescription;
@@ -28,7 +32,8 @@ public class VocCommand {
 	@Data
 	@Builder
 	@NoArgsConstructor
-	public static class VocReigsterRequest {
+	@AllArgsConstructor
+	public static class VocProcessRequest {
 		private Long deliveryDriverId;
 		private Long vocId;
 		private PenaltyApproval penaltyApproval;

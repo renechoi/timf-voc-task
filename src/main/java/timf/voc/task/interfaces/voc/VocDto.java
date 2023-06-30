@@ -85,6 +85,7 @@ public class VocDto {
 
 	@Data
 	@Builder
+	@AllArgsConstructor
 	public static class VocRequest{
 		private Long claimId;
 		private String description;
@@ -92,7 +93,9 @@ public class VocDto {
 		private boolean compensationRequested;
 		private ClaimResponsibility claimResponsibility;
 		private Long deliveryDriverId;
+		private String deliveryDriverToken;
 		private Long clientCompanyId;
+		private String clientCompanyToken;
 		private Long compensationAmount;
 		private Long penaltyAmount;
 		private String compensationDescription;

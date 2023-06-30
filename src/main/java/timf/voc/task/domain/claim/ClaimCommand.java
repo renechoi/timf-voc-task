@@ -1,5 +1,6 @@
 package timf.voc.task.domain.claim;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import timf.voc.task.config.converter.EntityAndDtoConverter;
 import timf.voc.task.interfaces.claim.ClaimDto;
@@ -7,6 +8,7 @@ import timf.voc.task.interfaces.claim.ClaimDto;
 public class ClaimCommand {
 
 	@Data
+	@AllArgsConstructor
 	public static class ClaimRequest {
 		private String personName;
 		private String content;

@@ -60,6 +60,7 @@ public class DeliveryDriverDto {
 	@Data
 	@Builder
 	@NoArgsConstructor
+	@AllArgsConstructor
 	public static class DeliveryDriverVocProcessRequest {
 		private Long deliveryDriverId;
 		private Long vocId;
