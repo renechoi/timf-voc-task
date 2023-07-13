@@ -197,7 +197,7 @@ v.1.3.0
 
 ### v.1.3.0
 #### 2023.07.13
-1) 레이어 계층 구조 변경 
+##### 1) 레이어 계층 구조 변경 
 - 기존 3티어 레이어드 아키텍처 -> 변경 도메인 중심 4계층 아키텍처 <br>
 
 ![img.png](docs/java-docs/img.png)
@@ -205,9 +205,13 @@ v.1.3.0
 
 ![img_1.png](docs/java-docs/img_1.png)
 <br>
+
+- 패키지 현황
+![img.png](docs/java-docs/package_image.png)
+
 <br>
 
-2) Application 계층 생성
+##### 2) Application 계층 생성
 - transaction으로 묶여야 하는 도메인 로직과 기타 부수적인 기능을 수행하는 계층으로 정의한다.
 - 일반적인 도메인 주도 설계에서 이야기하는 역할, 즉 수행할 작업을 정의하고 작업을 조정하는 역할은 사실 도메인의 역할과 비슷하다.
 - 따라서 실용적인 측면에서 서비스 간의 조합을 하나의 요구사항에서 처리해야 할 때 필요한 작업을 수행하는 정도로 정의한다.
@@ -215,17 +219,109 @@ v.1.3.0
 - 인터페이스 aggregation의 의미로 사용되는 Facade로 클래스를 네이밍한다.
 -> 서비스 간 참조 관계를 해제하여 계층 간의 구조를 명확히 한다. 
 
-3) Info 객체 도입 
+e.g)
+
+```java
+@RequiredArgsConstructor
+@Service
+public class VocFacade {
+	private final SimpleVocService simpleVocService;
+	private final SimpleClaimService simpleClaimService;
+	private final NotificationService notificationService;
+	private final KafkaProducerService kafkaProducerService;
+
+	public void registerVoc(VocRegisterRequest request) {
+		simpleVocService.registerVoc(request);
+		simpleClaimService.updateStatusTrue(request);
+
+		notificationService.notifyNewVoc();
+		kafkaProducerService.notifyNewVoc();
+	}
+	// ...
+```
+
+##### 3) Info 객체 도입 
 - 기존 Dto 및 Response 객체로 통용되던 Vo를 Info 객체로 통일한다.
 - 도메인 계층 이상으로 리턴되는 값들에 대한 일관성 있는 Vo 역할이 가능하다.
 
-4) 도메인 계층 클래스의 네이밍 세분화
+e.g.) 
+```java
+@Data
+public class ClaimInfo {
+	private Long id;
+	private String claimToken;
+	private String personName;
+	private String content;
+	private boolean handled;
+
+	public static ClaimInfo from(Claim claim){
+		return EntityAndDtoConverter.convert(claim, ClaimInfo.class);
+	}
+}
+```
+
+##### 4) 도메인 계층 클래스의 네이밍 세분화
 - 주요 도메인의 흐름을 관리하는 핵심 Service를 두고, 이를 위한 Support 수준의 클래스들은 기능에 따라 Service 이외의 네이밍으로 한다.
 - 예를 들어 Reader, Persister, Factory 등등이다.
 - 해당 클래스들은 도메인에서 추상화 레벨로 존재하고, 인프라 계층에서 구현체로서 존재하도록 한다.
 
-5) 추상화 레벨 강화
+e.g)
+```java
+@Service
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
+public class SimpleVocService implements VocService {
+	
+	// ...
+
+  @Override
+  @Transactional
+  public void registerVoc(VocRegisterRequest request) {
+    ClientCompany clientCompany = clientCompanyReader.get(request.getClientCompanyId()).orElseThrow(
+            ClientCompanyNotFoundException::new);
+
+    DeliveryDriver deliveryDriver =deliveryDriverReader.get(request.getDeliveryDriverId()).orElseThrow(
+            DeliveryDriverNotFoundException::new);
+
+    vocSeriesFactory.save(request, clientCompany, deliveryDriver);
+  }
+    
+  // ...
+```
+
+```java
+public interface VocSeriesFactory {
+	void save(VocRegisterRequest request, ClientCompany clientCompany, DeliveryDriver deliveryDriver);
+}
+```
+
+```java
+@Component
+@RequiredArgsConstructor
+public class SimpleVocSeriesFactory implements VocSeriesFactory {
+    
+	// ...
+	
+	@Override
+	public void save(VocCommand.VocRegisterRequest request, ClientCompany clientCompany,
+		DeliveryDriver deliveryDriver) {
+
+		Compensation compensation = createCompensation(request);
+		vocSeriesValidators.forEach(validator -> validator.validate(compensation, request));
+
+		Penalty penalty = createPenalty(request);
+		vocRepository.save(Voc.of(request, clientCompany, deliveryDriver, compensation, penalty));
+	}
+	
+	// ...
+```
+
+##### 5) 추상화 레벨 강화
 - 도메인 레이어의 추상화 레벨 강화하였다.
 - 기존 데이터베이스 접근 로직 추상화 -> 도메인 레벨의 기능별 분리에 따른 변화와 함께 모든 클래스를 추상화하여 표현하며 세부 구현체들은 인프라 계층에서 구현하도록 한다.
+
+e.g.) 
+
+![img_1.png](docs/java-docs/voc_package_image.png)
 
 ---
