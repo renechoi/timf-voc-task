@@ -13,9 +13,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import timf.voc.task.application.ClaimFacade;
 import timf.voc.task.domain.claim.Claim;
-import timf.voc.task.fixture.ClaimFixture;
+import timf.voc.task.domain.claim.ClaimInfo;
 import timf.voc.task.domain.claim.SimpleClaimService;
+import timf.voc.task.fixture.ClaimFixture;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -25,6 +27,9 @@ class ClaimControllerTest {
 
 	@MockBean
 	private SimpleClaimService simpleClaimService;
+
+	@MockBean
+	private ClaimFacade claimFacade;
 
 	@Autowired
 	ClaimControllerTest(MockMvc mockMvc) {
@@ -36,8 +41,9 @@ class ClaimControllerTest {
 		// given
 		List<Claim> claims = List.of(ClaimFixture.create_asHandled(), ClaimFixture.create_asHandled());
 
-		List<ClaimResponse> claimResponses = List.of(ClaimResponse.from(claims.get(0)));
+		List<ClaimInfo> claimResponses = List.of(ClaimInfo.from(claims.get(0)));
 
+		when(claimFacade.getClaims()).thenReturn(claimResponses);
 		when(simpleClaimService.retrieveClaims()).thenReturn(claimResponses);
 
 		// when

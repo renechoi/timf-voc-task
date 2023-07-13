@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import timf.voc.task.domain.claim.Claim;
+import timf.voc.task.domain.voc.VocCommand;
 
 public class ClaimFixture {
 
@@ -15,7 +16,7 @@ public class ClaimFixture {
 		return Claim.builder().id(1L).content("content").handled(false).personName("name").build();
 	}
 
-	public static Claim create_withVocRequest(VocRequest vocRequest){
+	public static Claim create_withVocRequest(VocCommand.VocRegisterRequest vocRequest){
 		return Claim.builder().id(vocRequest.getClaimId()).content("content").handled(false).personName("name").build();
 	}
 

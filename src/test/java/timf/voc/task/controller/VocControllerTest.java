@@ -13,9 +13,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import timf.voc.task.application.VocFacade;
+import timf.voc.task.domain.voc.SimpleVocService;
+import timf.voc.task.domain.voc.VocCommand;
 import timf.voc.task.fixture.DeliveryDriverPenaltyRequestFixture;
 import timf.voc.task.fixture.VocRequestFixture;
-import timf.voc.task.domain.voc.SimpleVocService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,6 +28,9 @@ class VocControllerTest {
 	@MockBean
 	private SimpleVocService simpleVocService;
 
+	@MockBean
+	private VocFacade vocFacade;
+
 	@Autowired
 	VocControllerTest(MockMvc mockMvc) {
 		this.mockMvc = mockMvc;
@@ -34,8 +39,9 @@ class VocControllerTest {
 	@Test
 	void registerVoc_Success() throws Exception {
 		// given
-		VocRequest vocRequest = createVocRequest();
+		VocCommand.VocRegisterRequest vocRequest = createVocRequest();
 		willDoNothing().given(simpleVocService).registerVoc(vocRequest);
+		willDoNothing().given(vocFacade).registerVoc(vocRequest);
 
 		// when
 		/**
@@ -55,7 +61,7 @@ class VocControllerTest {
 	@Test
 	void handleDriverPenaltyApproval_RedirectsToDriverPage() throws Exception {
 		// given
-		DeliveryDriverPenaltyRequest penaltyRequest = createPenaltyRequest();
+		VocCommand.VocProcessRequest penaltyRequest = createPenaltyRequest();
 
 		// when
 		mockMvc.perform(post("/voc/penalty/driver/approval").contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -68,12 +74,12 @@ class VocControllerTest {
 	}
 
 	@NotNull
-	private DeliveryDriverPenaltyRequest createPenaltyRequest() {
+	private VocCommand.VocProcessRequest createPenaltyRequest() {
 		return DeliveryDriverPenaltyRequestFixture.create_Approved();
 	}
 
 	@NotNull
-	private VocRequest createVocRequest() {
-		return VocRequestFixture.create("voc request1");
+	private VocCommand.VocRegisterRequest createVocRequest() {
+		return VocRequestFixture.createRegisterRequest("voc request1");
 	}
 }

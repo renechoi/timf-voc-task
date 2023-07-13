@@ -14,12 +14,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import timf.voc.task.domain.claim.Claim;
 import timf.voc.task.config.exception.ClaimNotFoundException;
+import timf.voc.task.domain.claim.Claim;
+import timf.voc.task.domain.claim.ClaimCommand;
+import timf.voc.task.domain.claim.ClaimInfo;
 import timf.voc.task.domain.claim.SimpleClaimService;
+import timf.voc.task.domain.voc.VocCommand;
 import timf.voc.task.fixture.ClaimFixture;
 import timf.voc.task.fixture.VocRequestFixture;
-import timf.voc.task.interfaces.claim.ClaimDto;
 import timf.voc.task.infrastructure.claim.ClaimRepository;
 
 
@@ -34,7 +36,7 @@ class SimpleClaimServiceTest {
 	@Test
 	void shouldRegisterClaim_Success() {
 		// given
-		ClaimDto.ClaimRequest claimRequest = createClaimRequest();
+		ClaimCommand.ClaimRequest claimRequest = createClaimRequest();
 
 		// when
 		simpleClaimService.registerClaim(claimRequest);
@@ -54,7 +56,7 @@ class SimpleClaimServiceTest {
 		when(claimRepository.findAll()).thenReturn(claims);
 
 		// when
-		List<ClaimResponse> claimResponses = simpleClaimService.retrieveClaims();
+		List<ClaimInfo> claimResponses = simpleClaimService.retrieveClaims();
 
 		// then
 		assertEquals(claims.size(), claimResponses.size());
@@ -63,49 +65,49 @@ class SimpleClaimServiceTest {
 	@Test
 	void shouldHandleStatus_WhenClaimReceivedAndStatusIsTrue() {
 		// given
-		VocRequest vocRequest = createVocRequest();
+		VocCommand.VocRegisterRequest vocRequest = createVocRequest();
 		Claim claim = ClaimFixture.create_withVocRequest(vocRequest);
 		when(claimRepository.findById(vocRequest.getClaimId())).thenReturn(Optional.of(claim));
 
 		// when
-		simpleClaimService.updateStatusTrue(vocRequest, true);
+		simpleClaimService.updateStatusTrue(vocRequest);
 
 		// then
 		verify(claimRepository).findById(vocRequest.getClaimId());
 		assertTrue(claim.isHandled());
 	}
 
-	@Test
-	void shouldHandleStatus_WhenClaimReceivedAndStatusIsFalse() {
-		// given
-		VocRequest vocRequest = createVocRequest();
-		Claim claim = ClaimFixture.create_withVocRequest(vocRequest);
-		when(claimRepository.findById(vocRequest.getClaimId())).thenReturn(Optional.of(claim));
-
-		// when
-		simpleClaimService.updateStatusTrue(vocRequest, false);
-
-		// then
-		verify(claimRepository).findById(vocRequest.getClaimId());
-		assertFalse(claim.isHandled());
-	}
+	// @Test
+	// void shouldHandleStatus_WhenClaimReceivedAndStatusIsFalse() {
+	// 	// given
+	// 	VocCommand.VocRegisterRequest vocRequest = createVocRequest();
+	// 	Claim claim = ClaimFixture.create_withVocRequest(vocRequest);
+	// 	when(claimRepository.findById(vocRequest.getClaimId())).thenReturn(Optional.of(claim));
+	//
+	// 	// when
+	// 	simpleClaimService.updateStatusTrue(vocRequest);
+	//
+	// 	// then
+	// 	verify(claimRepository).findById(vocRequest.getClaimId());
+	// 	assertFalse(claim.isHandled());
+	// }
 
 	@Test
 	void shouldNotHandleStatus_WhenClaimNotReceived() {
 		// given & when
-		VocRequest vocRequest = createVocRequest();
+		VocCommand.VocRegisterRequest vocRequest = createVocRequest();
 
 		// then
-		assertThrows(ClaimNotFoundException.class, () -> simpleClaimService.updateStatusTrue(vocRequest, true));
+		assertThrows(ClaimNotFoundException.class, () -> simpleClaimService.updateStatusTrue(vocRequest));
 	}
 
 	@NotNull
-	private ClaimRequest createClaimRequest() {
-		return new ClaimRequest("type", "description");
+	private ClaimCommand.ClaimRequest createClaimRequest() {
+		return new ClaimCommand.ClaimRequest("type", "description");
 	}
 
 	@NotNull
-	private VocRequest createVocRequest() {
-		return VocRequestFixture.create("voc request1");
+	private VocCommand.VocRegisterRequest createVocRequest() {
+		return VocRequestFixture.createRegisterRequest("voc request1");
 	}
 }

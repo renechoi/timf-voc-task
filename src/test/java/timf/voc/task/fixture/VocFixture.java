@@ -7,13 +7,19 @@ import java.util.stream.Stream;
 
 import timf.voc.task.domain.clientcompany.ClientCompany;
 import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
+import timf.voc.task.domain.voc.VocCommand.VocRegisterRequest;
+import timf.voc.task.domain.voc.aggregate.Compensation;
+import timf.voc.task.domain.voc.aggregate.Penalty;
 import timf.voc.task.domain.voc.aggregate.Voc;
 
 public class VocFixture {
 
-	public static Voc create(VocRequest vocRequest, DeliveryDriver deliveryDriver, ClientCompany clientCompany) {
+	public static Voc create(VocRegisterRequest vocRequest, DeliveryDriver deliveryDriver, ClientCompany clientCompany) {
+		Compensation compensation = CompensationFixture.create(vocRequest.getCompensationDescription(),
+			vocRequest.getCompensationAmount());
+		Penalty penalty = PenaltyFixture.create();
 
-		Voc voc = Voc.of(vocRequest, clientCompany, deliveryDriver);
+		Voc voc = Voc.of(vocRequest, clientCompany, deliveryDriver, compensation, penalty);
 		voc.setCreatedAt(LocalDateTime.now());
 		return voc;
 	}
@@ -31,8 +37,8 @@ public class VocFixture {
 
 	public static List<Voc> createList(){
 		return Stream.of(
-			create(VocRequestFixture.create("request1"), DeliveryDriverFixture.create(createEmptyAsList(), false, null), ClientCompanyFixture.create(createEmptyAsList(),0L, false)),
-			create(VocRequestFixture.create("request2"), DeliveryDriverFixture.create(createEmptyAsList(), false, null), ClientCompanyFixture.create(createEmptyAsList(),0L, false))
+			create(VocRequestFixture.createRegisterRequest("request1"), DeliveryDriverFixture.create(createEmptyAsList(), false, null), ClientCompanyFixture.create(createEmptyAsList(),0L, false)),
+			create(VocRequestFixture.createRegisterRequest("request2"), DeliveryDriverFixture.create(createEmptyAsList(), false, null), ClientCompanyFixture.create(createEmptyAsList(),0L, false))
 			).collect(Collectors.toList());
 	}
 }

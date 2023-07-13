@@ -10,6 +10,7 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import timf.voc.task.domain.clientcompany.ClientCompany;
 import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
+import timf.voc.task.domain.voc.VocCommand.VocRegisterRequest;
 import timf.voc.task.domain.voc.aggregate.Voc;
 import timf.voc.task.fixture.ClientCompanyFixture;
 import timf.voc.task.fixture.DeliveryDriverFixture;
@@ -29,7 +30,7 @@ class VocRepositoryTest {
 	@DirtiesContext
 	public void shouldSave_Success() {
 		// given
-		VocRequest vocRequest = VocRequestFixture.create("voc request1");
+		VocRegisterRequest vocRequest = VocRequestFixture.createRegisterRequest("voc request1");
 		DeliveryDriver deliveryDriver = DeliveryDriverFixture.create(VocFixture.createEmptyAsList(), false,
 			TransportCompanyFixture.create());
 		ClientCompany clientCompany = ClientCompanyFixture.create(VocFixture.createEmptyAsList(), 1000L, false);

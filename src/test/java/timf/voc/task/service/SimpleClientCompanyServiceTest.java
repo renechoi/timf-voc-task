@@ -14,7 +14,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import timf.voc.task.domain.clientcompany.ClientCompany;
 import timf.voc.task.config.exception.ClientCompanyNotFoundException;
+import timf.voc.task.domain.clientcompany.ClientCompanyInfo;
 import timf.voc.task.domain.clientcompany.SimpleClientCompanyService;
+import timf.voc.task.domain.voc.VocCommand;
 import timf.voc.task.fixture.ClientCompanyFixture;
 import timf.voc.task.fixture.VocFixture;
 import timf.voc.task.fixture.VocRequestFixture;
@@ -37,7 +39,7 @@ class SimpleClientCompanyServiceTest {
 		when(clientCompanyRepository.findById(companyId)).thenReturn(Optional.of(clientCompany));
 
 		// when
-		ClientCompany result = simpleClientCompanyService.retrieveClientCompany(companyId);
+		ClientCompanyInfo result = simpleClientCompanyService.retrieveClientCompany(companyId);
 
 		// then
 		verify(clientCompanyRepository).findById(companyId);
@@ -57,14 +59,14 @@ class SimpleClientCompanyServiceTest {
 	}
 
 	@NotNull
-	private ClientCompany createClientCompany(VocRequest vocRequest) {
+	private ClientCompany createClientCompany(VocCommand.VocRegisterRequest vocRequest) {
 		return ClientCompanyFixture.create(vocRequest.getClientCompanyId(),
 			VocFixture.createEmptyAsList(), 1000L, false);
 	}
 
 	@NotNull
-	private VocRequest createVocRequest() {
-		return VocRequestFixture.create("voc request1");
+	private VocCommand.VocRegisterRequest createVocRequest() {
+		return VocRequestFixture.createRegisterRequest("voc request1");
 	}
 }
 

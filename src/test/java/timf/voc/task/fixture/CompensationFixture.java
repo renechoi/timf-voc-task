@@ -12,4 +12,11 @@ public class CompensationFixture {
 			.voc(voc)
 			.build();
 	}
+
+	public static Compensation create(String compensationDescription, Long compensationAmount) {
+		return Compensation.builder()
+			.description(compensationDescription)
+			.amount(compensationAmount)
+			.build();
+	}
 }
