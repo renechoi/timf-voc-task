@@ -3,9 +3,9 @@ package timf.voc.task.fixture;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import timf.voc.task.entity.DeliveryDriver;
-import timf.voc.task.entity.TransportCompany;
-import timf.voc.task.entity.voc.Voc;
+import timf.voc.task.domain.transportcompany.aggregate.DeliveryDriver;
+import timf.voc.task.domain.transportcompany.aggregate.TransportCompany;
+import timf.voc.task.domain.voc.aggregate.Voc;
 
 public class DeliveryDriverFixture {
 

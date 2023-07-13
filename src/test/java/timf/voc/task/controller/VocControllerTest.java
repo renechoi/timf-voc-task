@@ -13,11 +13,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import timf.voc.task.dto.request.DeliveryDriverPenaltyRequest;
-import timf.voc.task.dto.request.VocRequest;
+import timf.voc.task.application.VocFacade;
+import timf.voc.task.domain.voc.SimpleVocService;
+import timf.voc.task.domain.voc.VocCommand;
 import timf.voc.task.fixture.DeliveryDriverPenaltyRequestFixture;
 import timf.voc.task.fixture.VocRequestFixture;
-import timf.voc.task.service.VocService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -26,7 +26,10 @@ class VocControllerTest {
 	private final MockMvc mockMvc;
 
 	@MockBean
-	private VocService vocService;
+	private SimpleVocService simpleVocService;
+
+	@MockBean
+	private VocFacade vocFacade;
 
 	@Autowired
 	VocControllerTest(MockMvc mockMvc) {
@@ -36,8 +39,9 @@ class VocControllerTest {
 	@Test
 	void registerVoc_Success() throws Exception {
 		// given
-		VocRequest vocRequest = createVocRequest();
-		willDoNothing().given(vocService).registerVoc(vocRequest);
+		VocCommand.VocRegisterRequest vocRequest = createVocRequest();
+		willDoNothing().given(simpleVocService).registerVoc(vocRequest);
+		willDoNothing().given(vocFacade).registerVoc(vocRequest);
 
 		// when
 		/**
@@ -51,13 +55,13 @@ class VocControllerTest {
 			.andExpect(redirectedUrl("/voc/list"));
 
 		// then
-		verify(vocService).registerVoc(vocRequest);
+		verify(simpleVocService).registerVoc(vocRequest);
 	}
 
 	@Test
 	void handleDriverPenaltyApproval_RedirectsToDriverPage() throws Exception {
 		// given
-		DeliveryDriverPenaltyRequest penaltyRequest = createPenaltyRequest();
+		VocCommand.VocProcessRequest penaltyRequest = createPenaltyRequest();
 
 		// when
 		mockMvc.perform(post("/voc/penalty/driver/approval").contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -66,16 +70,16 @@ class VocControllerTest {
 			.andExpect(redirectedUrl("/delivery-driver/my-page?id=" + penaltyRequest.getDeliveryDriverId()));
 
 		// then
-		verify(vocService).handleDriverPenalty(penaltyRequest);
+		verify(simpleVocService).handleDriverApproval(penaltyRequest);
 	}
 
 	@NotNull
-	private DeliveryDriverPenaltyRequest createPenaltyRequest() {
+	private VocCommand.VocProcessRequest createPenaltyRequest() {
 		return DeliveryDriverPenaltyRequestFixture.create_Approved();
 	}
 
 	@NotNull
-	private VocRequest createVocRequest() {
-		return VocRequestFixture.create("voc request1");
+	private VocCommand.VocRegisterRequest createVocRequest() {
+		return VocRequestFixture.createRegisterRequest("voc request1");
 	}
 }

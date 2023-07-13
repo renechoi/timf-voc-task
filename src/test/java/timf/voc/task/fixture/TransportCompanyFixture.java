@@ -2,7 +2,7 @@ package timf.voc.task.fixture;
 
 import java.time.LocalDateTime;
 
-import timf.voc.task.entity.TransportCompany;
+import timf.voc.task.domain.transportcompany.aggregate.TransportCompany;
 
 public class TransportCompanyFixture {
 

@@ -4,7 +4,7 @@
 
 ### 2. 프로젝트 기간
 - 1차: 2023.05.23 - 2023.05.29 (7일)
-- 리팩토링 및 기능 추가(2023.06)
+- 리팩토링 및 기능 추가(2023.06 - 2023.07)
 ### 3. 개발 방법론
 - MVP(Minimum Variable Product)로 최소한의 필요한 기능만을 구현하고자 함
 - 개발 환경: `IntelliJ 2022.3`, `MacOS Monterey`
@@ -35,7 +35,7 @@
   - 거절: 배송기사는 사유와 함께 거절할 수 있다. `Penalty`와 `Compensation`은 처리되지 않고 홀딩된다. 정책에 따른 별도 로직이 요구된다.
 
 ### 6. 기술 스택
-- `Java` v11
+- `Java` JDK 11
 - `Gradle` v.7.6.1
 - `SpringBoot` v2.7.12
 - `Spring Data Jpa` v2.7.12
@@ -55,6 +55,11 @@
 
 
 ### 8. 특이 사항 (java docs)
+
+<details>
+<summary>
+v.1.0.0 
+</summary>
 
 #### 1. `VocService.registerVoc()`
 ![ERD](docs/java-docs/VocService.registerVoc%20.png)
@@ -77,6 +82,25 @@
 #### 10. `VocControllerTest.registerVoc_Success()`
 ![ERD](docs/java-docs/VocControllerTest.registerVoc_Success.png)
 
+</details>
+
+
+<details>
+<summary>
+v.1.3.0 
+</summary>
+
+다음과 같은 문제를 해결하기 위해 도메인 주도 개발 방법론(DDD)를 적용한 아키텍처 수정 업데이트를 진행한 버전이다.
+자세한 내용은 밑의 버전 업데이트 노트에서 기술한다. 
+
+기존의 문제 사항
+1) 컨트롤러와 서비스 간의 의존관계 문제
+2) 서비스와 서비스 간의 많은 참조 관계 문제
+3) 서비스의 부가 기능 처리 문제
+
+아키텍처 변경 내용 
+![img_2.png](docs/java-docs/img_2.png)
+</details>
 
 ### 9. 시연 영상 및 테스트 코드 통과 현황
 - 시연 영상
@@ -169,6 +193,39 @@
              return prefix + randomCharacter(TOKEN_LENGTH - prefix.length());
          }
       }
-    
+
+
+### v.1.3.0
+#### 2023.07.13
+1) 레이어 계층 구조 변경 
+- 기존 3티어 레이어드 아키텍처 -> 변경 도메인 중심 4계층 아키텍처 <br>
+
+![img.png](docs/java-docs/img.png)
+- 각 레이어 구분 및 역할 상세<br>
+
+![img_1.png](docs/java-docs/img_1.png)
+<br>
+<br>
+
+2) Application 계층 생성
+- transaction으로 묶여야 하는 도메인 로직과 기타 부수적인 기능을 수행하는 계층으로 정의한다.
+- 일반적인 도메인 주도 설계에서 이야기하는 역할, 즉 수행할 작업을 정의하고 작업을 조정하는 역할은 사실 도메인의 역할과 비슷하다.
+- 따라서 실용적인 측면에서 서비스 간의 조합을 하나의 요구사항에서 처리해야 할 때 필요한 작업을 수행하는 정도로 정의한다.
+- 예를 들어, Voc가 등록된 뒤 추가적으로 필요한 Claim에 대한 처리, Voc 발생에 대한 알림 처리 등을 수행한다.
+- 인터페이스 aggregation의 의미로 사용되는 Facade로 클래스를 네이밍한다.
+-> 서비스 간 참조 관계를 해제하여 계층 간의 구조를 명확히 한다. 
+
+3) Info 객체 도입 
+- 기존 Dto 및 Response 객체로 통용되던 Vo를 Info 객체로 통일한다.
+- 도메인 계층 이상으로 리턴되는 값들에 대한 일관성 있는 Vo 역할이 가능하다.
+
+4) 도메인 계층 클래스의 네이밍 세분화
+- 주요 도메인의 흐름을 관리하는 핵심 Service를 두고, 이를 위한 Support 수준의 클래스들은 기능에 따라 Service 이외의 네이밍으로 한다.
+- 예를 들어 Reader, Persister, Factory 등등이다.
+- 해당 클래스들은 도메인에서 추상화 레벨로 존재하고, 인프라 계층에서 구현체로서 존재하도록 한다.
+
+5) 추상화 레벨 강화
+- 도메인 레이어의 추상화 레벨 강화하였다.
+- 기존 데이터베이스 접근 로직 추상화 -> 도메인 레벨의 기능별 분리에 따른 변화와 함께 모든 클래스를 추상화하여 표현하며 세부 구현체들은 인프라 계층에서 구현하도록 한다.
 
 ---

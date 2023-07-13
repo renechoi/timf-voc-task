@@ -32,6 +32,15 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     implementation 'org.apache.commons:commons-lang3:3.9'
 
+    // MapStruct
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+    annotationProcessor(
+            'org.projectlombok:lombok',
+            'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+    )
+
+
     // data
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.mysql:mysql-connector-j'

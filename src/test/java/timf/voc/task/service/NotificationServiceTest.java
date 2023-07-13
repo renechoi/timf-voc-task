@@ -15,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import timf.voc.task.domain.notification.NotificationService;
 
 @ExtendWith(MockitoExtension.class)
 class NotificationServiceTest {
